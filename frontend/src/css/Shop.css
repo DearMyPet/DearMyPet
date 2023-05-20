@@ -1,0 +1,67 @@
+.catagory{
+  float: left;
+  margin-top: 40px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.popular{
+  float: left;
+  margin-top: 40px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.category-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+  
+.category-list > div > span {
+  flex-basis: 25%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.category-list > div > img {
+  width: 56px;
+  margin-bottom: 5px;
+}
+
+.detail{
+  text-align: left;
+  margin-left: 20px;
+}
+
+.share{
+  float: right;
+  margin-right: 20px;
+}
+
+.horizontal-line {
+  border-top: 5px solid #E5E5E5;
+  margin: 15px 0;
+}
+
+.sell-detail{
+  text-align: left;
+  padding: 24px 16px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  margin-left: 40px;
+}
+
+.sub-label {
+  display: block;
+  margin-left: 80px;
+  color: gray;
+}
