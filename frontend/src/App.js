@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css';
+import Main from "./pages/main/Main"
+import Shop from "./pages/shop/Shop";
+import Login from "./pages/login/Login";
+import NavBar from "./pages/bar/NavBar";
+import Detail from "./pages/shop/Detail";
 
 function App() {
+  const location = useLocation();
+  const excludedPaths = ['/', '/detail'];
+
+  const shouldExcludeNavBar = excludedPaths.includes(location.pathname);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!shouldExcludeNavBar && <NavBar />}
+      <main>
+        <Routes>
+          <Route path="/" element={<Login/>} />
+          <Route path="/main" element={ <Main/> } />
+          <Route path="/shop" element={ <Shop/> } />
+          <Route path="/detail" element={ <Detail/> } />
+        </Routes>
+      </main>
     </div>
   );
 }
