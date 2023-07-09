@@ -1,17 +1,21 @@
+.navbar{
+  position: fixed;
+  width: 100%;
+  height: 56px;
+  top:0;
+  left:0;
+}
+
 .cart{
   position: absolute;
-  height: 23px;
-  width: 25px;
   left: 310px;
   top: 20px;
 }
 
 .user{
   position: absolute;
-  height: 25px;
-  width: 25px;
   left: 350px;
-  top: 18px;
+  top: 20px;
 }
 
 .searchContainer {
@@ -35,6 +39,7 @@
   width: 390px;
   display: flex;
   justify-content: space-between;
+  background: #FFFFFF;
 }
 
 .menuForm > div > span {
@@ -47,4 +52,47 @@
 
 .menuForm > div > img {
   margin-bottom: 5px;
+}
+
+.detail-nav{
+  width: 100%;
+  height: 55px;
+  top:0;
+  left:0;
+}
+
+.info-bar{
+  margin: 0 30px;
+  text-align: left;
+  font-family: 'Noto Sans KR';
+}
+
+.infoBar-title{
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 26px;
+  color: #000000;
+}
+
+.infoBar-sub-title{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.infoBar-content{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6F6F6F;
+}
+
+.sns-icon{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
 }
