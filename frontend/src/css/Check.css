@@ -1,0 +1,173 @@
+.Check {
+    width: 390px;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    background: #F9F9F9;
+}
+
+.user-title{
+    position: absolute;
+    width: 390px;
+    height: 76px;
+    background: #F6F6F6;   
+}
+
+.user-img{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 15px;
+    top: 13px;
+
+}
+
+.title{
+    position: absolute;
+    height: 26px;
+    left: 20px;
+    top: 152px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 26px;
+    color: #000000;
+}
+
+.content{
+    position: absolute;
+    height: 22px;
+    left: 20px;
+    top: 180px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 22px;
+    color: #787882;
+}
+
+.user-name{
+    position: absolute;
+    height: 32px;
+    left: 78px;
+    top: 22px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    /* identical to box height */
+    color: #2D2D2D;
+}
+
+.file-info{
+    position: absolute;
+    width: 263px;
+    height: 20px;
+    left: calc(50% - 263px/2);
+    top: 62px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #71717B;
+}
+
+.filebox label {
+    position: inherit;
+    left: calc(50% - 30px/2);
+    top: 55px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.eyeguide-check{
+    position: absolute;
+    width: 350px;
+    height: 50px;
+    left: calc(50% - 350px/2);
+    padding-left: 20px;
+    top: 631px;
+    text-align: left;
+    background: #FFFFFF;
+    border-radius: 14px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 50px;
+    color: #5A5A5A;
+}
+
+.skinguide-check{
+    position: absolute;
+    padding-left: 20px;
+    width: 350px;
+    height: 50px;
+    left: calc(50% - 350px/2);
+    top: 701px;
+    text-align: left;
+    background: #FFFFFF;
+    border-radius: 14px;
+    font-family: 'Noto50px Sans KR';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 50px;
+    color: #5A5A5A;
+}
+
+.check-more{
+    position: absolute;
+    width: 8px;
+    height: 16px;
+    top: 18px;
+    left: 326px;
+}
+
+.check-btn{
+    position: absolute;
+    width: 350px;
+    height: 38px;
+    left: calc(50% - 350px/2);
+    top: 457px;
+    border-style: none;
+    background: #444ED3;
+    border-radius: 6px;
+    color: #FFFFFF;
+    text-decoration: none;
+    line-height: 38px;
+}
+
+.filebox{
+    box-sizing: border-box;
+    position: absolute;
+    width: 350px;
+    height: 187px;
+    left: calc(50% - 350px/2);
+    top: 248px;
+
+    background: #FFFFFF;
+    border: 1.4px dashed #C8C8D1;
+    border-radius: 10px;
+
+}
+
+

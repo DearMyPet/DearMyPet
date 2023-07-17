@@ -19,7 +19,7 @@ const NavBar = () => {
     let navigate = useNavigate();
     return (
         <div>
-             {[false].map((expand) => (
+            {/* {[false].map((expand) => (
                 <Navbar key={expand} bg="white" expand={expand} className="navbar">
                     <Container fluid>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
@@ -70,7 +70,7 @@ const NavBar = () => {
                         </Navbar.Offcanvas>
                     </Container>
                 </Navbar>
-            ))}
+            ))} */}
 
             <div className='menuForm'>
                 <div className='menu1' onClick={()=>{navigate("/home")}}>
