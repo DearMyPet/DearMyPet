@@ -2,14 +2,12 @@ import '../../css/Main.css';
 import mypage from '../../img/my_page.svg'
 import bell from '../../img/bell.svg'
 import { Link } from 'react-router-dom';
-import NavBar from "../../pages/bar/NavBar";
 
 
 function Main(){
     return(
         
         <div className="Main">
-            <NavBar/>
             <div className='main-navbar'>
                 <img className='mypage' src={mypage}/>
                 <img className='bell' src={bell}/>
