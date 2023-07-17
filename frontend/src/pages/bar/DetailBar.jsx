@@ -10,7 +10,7 @@ const DetailBar = ({ text }) => {
     const navigate = useNavigate();
     const title = useState(text);
     const handleGoBack = () => {
-      navigate(-1);
+        navigate(-1);
     };
 
     return(
