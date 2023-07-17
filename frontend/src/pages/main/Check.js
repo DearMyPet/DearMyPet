@@ -16,7 +16,7 @@ function Check(){
             </div>
 
             <span className='title'>파일을 업로드 해주세요</span>
-            <span className='content'>아래에 사진을 첨부에 주세요</span>
+            <span className='content'>아래에 사진을 첨부에 주세용</span>
 
 
             <div class="filebox">
