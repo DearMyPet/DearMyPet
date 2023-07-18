@@ -38,12 +38,12 @@ const NavBottomBar = () => {
           <BottomNavigationAction
             label="진단"
             icon={<img src={menu1} />}
-            onClick={() => handleNavigation('/main', 0)}
+            // onClick={() => handleNavigation('/main', 0)}
           />
           <BottomNavigationAction
             label="일지"
             icon={<img src={menu2} />}
-            // onClick={() => handleNavigation('/journal', 1)}
+            onClick={() => handleNavigation('/logs', 1)}
           />
           <BottomNavigationAction
             label="마켓"
@@ -53,7 +53,7 @@ const NavBottomBar = () => {
           <BottomNavigationAction
             label="더보기"
             icon={<img src={menu4} />}
-            // onClick={() => handleNavigation('/more', 3)}
+            onClick={() => handleNavigation('/mypage', 3)}
           />
         </BottomNavigation>
       </Paper>

@@ -1,0 +1,121 @@
+*{
+    font-family: 'Noto Sans KR';
+}
+
+.mypage-profile{
+    display: flex;
+    align-items: center;
+    margin-left: 35px;
+    text-align: left;
+}
+
+.mypage-profile img{
+    width: 30px;
+    height: 30px;
+    flex-grow: 0;
+}
+
+.mypage-profile span{
+    padding: 0 6px 0 16px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.mypage-arrow{
+    width: 14px;
+    height: 14px;
+    flex-grow: 0;
+}
+
+.point-box{
+    display: flex;
+    align-items: center;
+    width: 330px;
+    height: 60px;
+    margin: 20px 30px;
+    padding: 15px 18px;
+    border-radius: 90px;
+    background-color: #eff4f3;
+}
+
+.point-circle{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+.point-circle span{
+    color: #6E6E6E;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.point-text{
+    margin-left: 14px;
+    color: #414141;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.point-value{
+    position: absolute;
+    right: 50px;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.mypage-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 36px 80px 30px;
+}
+
+.icon-bar{
+    width: 60x;
+    height: 58px;
+}
+
+.icon-bar img{
+    width: 40px;
+    height: 34px;
+}
+
+.icon-bar span{
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.mypage-list{
+    margin: 20px 36px 22px 20px;
+    text-align: left;
+}
+
+.mypage-title{
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.mypage-list-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px 0;
+}
