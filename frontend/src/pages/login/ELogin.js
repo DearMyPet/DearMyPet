@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
-
-
 function EJoin() {
   const formSchema = yup.object({
     email: yup

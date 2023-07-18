@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import './App.css';
-import Main from "./pages/main/Main"
+import Main from "./pages/main/Main";
 import Shop from "./pages/shop/Shop";
 import Detail from "./pages/shop/Detail";
 import Order from "./pages/shop/Order"
@@ -8,6 +8,10 @@ import PaymentEnd from "./pages/shop/PaymentEnd";
 import Cart from "./pages/shop/Cart";
 import OrderDetails from "./pages/shop/OrderDetails";
 import List from "./pages/shop/List";
+import Log from "./pages/log/Log"
+import LogDetail from "./pages/log/LogDetail"
+import DiseaseReport from "./pages/log/DiseaseReportList"
+import MyPage from "./pages/myPage/MyPage";
 import LoginMain from './pages/login/LoginMain';
 import ELogin from './pages/login/ELogin';
 import EJoin from './pages/login/EJoin';
@@ -22,6 +26,9 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<LoginMain/>} />
+          <Route path="/logs" element={<Log/>} />
+          <Route path="/logs/details" element={<LogDetail/>} />
+          <Route path="/disease/reports" element={<DiseaseReport/>} />
           <Route path="/main" element={ <Main/> } />
           <Route path="/ejoin" element={<EJoin/>} />
           <Route path="/elogin" element={<ELogin/>} />
@@ -37,6 +44,7 @@ function App() {
           <Route path="/cart" element={ <Cart/> } />
           <Route path="/orders" element={ <OrderDetails/> } />
           <Route path="/lists" element={<List/>} />
+          <Route path="/mypage" element={<MyPage/>} />
         </Routes>
       </main>
     </div>

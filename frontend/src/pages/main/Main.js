@@ -3,7 +3,6 @@ import mypage from '../../img/my_page.svg'
 import bell from '../../img/bell.svg'
 import { Link } from 'react-router-dom';
 
-
 function Main(){
     return(
         

@@ -1,0 +1,231 @@
+*{
+    font-family: 'Noto Sans KR';
+}
+
+.log-body{
+    margin: 0 20px;
+    text-align: left;
+}
+
+.log-profile{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.log-profile img{
+    width: 50px;
+    height: 50px;
+}
+
+.log-profile span{
+    margin-left: 12px;
+    color: #2D2D2D;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.log-title-form{
+    margin: 40px 0 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.log-title{
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.more{
+    color: #686868;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+}
+
+.more-arrow{
+    width: 8px;
+    height: 14px;
+    margin-left: 4px;
+}
+
+.block{
+    position: relative;
+    width: 164px;
+    height: 164px;
+    border-radius: 14px;
+    padding: 16px 16px;
+}
+
+.block-title{
+    color: #3E3E3E;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.block-sub{
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.block-value{
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.block-value-form{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 14px;
+}
+
+.block-form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.log-content{
+    display: block;
+}
+
+.log-content img{
+    display: inline;
+    margin-top: 26px;
+}
+
+.log-content span{
+    position: absolute;
+    margin: 20px 20px;
+}
+
+.horizontal-line3 {
+    width: 390px;
+    height: 7px;
+    left: 0px;
+    margin: 43px 0 49px;
+    background-color: #e6e6e6;
+}
+
+.check-box{
+    width: 350px;
+    height: 145px;
+    border-radius: 20px;
+    padding: 14px 0 0 26px;
+    background-color: #e2eee2;
+}
+
+.check-box input{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 50px;
+}
+
+.check-box label{
+    margin-bottom: 26px;
+    margin-left: 40px;
+}
+
+.report-list{
+    height: 90px;
+}
+
+.report-img{
+    width: 46px;
+    height: 46px;
+}
+
+.report-date{
+    margin-left: 20px;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    vertical-align: middle;
+}
+
+.report-state{
+    position: absolute;
+    right: 24px;
+    margin-top: 14px;
+    color: #F9535F;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 1px 2px;
+    border-radius: 4px;
+    border: solid 1px #f9535f;
+}
+
+.line{
+    position: absolute;
+    width: 350px;
+    left: 20px;
+    height: 1px;
+    margin: 24px 0;
+    background-color: #eaeaea;
+}
+
+.report-button{
+    position: fixed; 
+    bottom: 40px;
+    margin-left: 30px;
+}
+
+.desc-box{
+    position: absolute;
+    left: 40px;
+    text-align: left;
+}
+
+.desc{
+    position: absolute;
+    margin-left: 8px;
+    width: 280px;
+    color: #747476;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: 21px;
+}
+
+.log-detail-head{
+    margin: 36px 0 24px;
+}
+
+.log-detail-title{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.disease-desc{
+    display: flex;
+    width: 350px;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 40px 0 46px;
+    color: #494949;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
