@@ -2,6 +2,7 @@ import '../../css/Main.css';
 import mypage from '../../img/my_page.svg'
 import bell from '../../img/bell.svg'
 import { Link } from 'react-router-dom';
+import NavBottomBar from '../bar/NavBottomBar';
 
 function Main(){
     return(
@@ -39,9 +40,7 @@ function Main(){
                     <Link className='skin-guide' to="/">피부 진단 가이드 🐾</Link>
                 </div>
             </div>
-
-            
-
+            <NavBottomBar/>
         </div>
     );
 }

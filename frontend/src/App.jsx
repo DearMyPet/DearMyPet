@@ -19,6 +19,7 @@ import EPhone from './pages/login/EPhone';
 import FinElogin from './pages/login/FinElogin';
 import Check from './pages/main/Check';
 import Checking from './pages/main/Checking';
+import ProductRecommendation from "./pages/log/ProductRecommendation";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/logs" element={<Log/>} />
           <Route path="/logs/details" element={<LogDetail/>} />
           <Route path="/disease/reports" element={<DiseaseReport/>} />
+          <Route path="/products/list" element={<ProductRecommendation/>} />
           <Route path="/main" element={ <Main/> } />
           <Route path="/ejoin" element={<EJoin/>} />
           <Route path="/elogin" element={<ELogin/>} />
