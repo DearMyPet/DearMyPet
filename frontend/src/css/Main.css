@@ -1,0 +1,142 @@
+.Main {
+    width: 390px;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    background-color: #F5F5F5;
+}
+
+.main-title{
+    margin-top: 30px;
+}
+
+.mypage{
+    position: absolute;
+    left: 20px;
+    top: 40px;
+}
+
+.bell{
+    position: absolute;
+    left: 349px;
+    top: 40px;
+}
+
+.notice{
+    position: absolute;
+    width: 350px;
+    height: 36px;
+    left: 20px;
+    top: 182px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: left;
+    color: #3E3E3E;
+}
+
+.notice-text{
+    margin-left: 10px;
+}
+
+.eye-examination{
+    position: absolute;
+    width: 164px;
+    height: 164px;
+    left: 20px;
+    top: 257px;
+    background: #F9E467;
+    border-radius: 14px;
+    font-family: 'Noto Sans KR';
+    text-align: left;       
+}
+
+.box-title{
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 20px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #3E3E3E;
+    text-decoration: none;
+}
+
+.box-exp{
+    position: absolute;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 20px;
+    margin-top: 43px;
+    color: #3E3E3E;
+    text-decoration: none;
+}
+
+.skin-examination{
+    position: absolute;
+    width: 164px;
+    height: 164px;
+    left: 206px;
+    top: 257px;
+    background: #F5BE6E;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.examination-report{
+    position: absolute;
+    width: 350px;
+    height: 101px;
+    left: 20px;
+    top: 440px;
+    background: #E2EEE2;
+    border-radius: 14px;
+    text-align: left;   
+}
+
+.guide-title{
+    position: absolute;
+    left: 20px;
+    top: 608px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    color: #000000;
+}
+
+.guide-box{
+    position: absolute;
+    width: 350px;
+    height: 50px;
+    left: calc(50% - 350px/2);
+    top: 642px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.eye-guide{
+    text-decoration: none;
+    color: #5A5A5A;
+    font-weight: 600;
+}
+
+.skin-guide{
+    text-decoration: none;
+    color: #5A5A5A;
+    font-weight: 600;
+}
