@@ -38,7 +38,7 @@ const NavBottomBar = () => {
           <BottomNavigationAction
             label="진단"
             icon={<img src={menu1} />}
-            // onClick={() => handleNavigation('/main', 0)}
+            onClick={() => handleNavigation('/main', 0)}
           />
           <BottomNavigationAction
             label="일지"

@@ -42,7 +42,7 @@ const LogDetail = () => {
             <DiseaseLog/>
 
             <div className="report-button">
-                <button className='buy-button' onClick={()=>{ navigate("/shop")}}> 추천 상품 보러가기</button>
+                <button className='buy-button' onClick={()=>{ navigate("/products/list")}}> 추천 상품 보러가기</button>
             </div>
         </div>
     )

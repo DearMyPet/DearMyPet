@@ -7,10 +7,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom'
 import '../../css/NavBar.css'
-import menu1 from '../../img/menu1.svg';
-import menu2 from '../../img/menu2.svg';
-import menu3 from '../../img/menu3.svg';
-import menu4 from '../../img/menu4.svg';
 import cart from '../../img/cart.svg'
 import myPage from '../../img/myPage.svg'
 
@@ -24,7 +20,7 @@ const NavBar = () => {
                     <Container fluid>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
                         <Navbar.Brand className='topIcon'>
-                            <img src={cart} className='cart'/>
+                            <img src={cart} className='cart' onClick={()=>navigate("/cart")}/>
                             <img src={myPage} className='user'/>
                         </Navbar.Brand>
                         
@@ -71,25 +67,6 @@ const NavBar = () => {
                     </Container>
                 </Navbar>
             ))}
-
-            <div className='menuForm'>
-                <div className='menu1' onClick={()=>{navigate("/home")}}>
-                    <img src={menu1}/> 
-                    <span>진단</span>
-                </div>
-                <div className='menu2'>
-                    <img src={menu2}/> 
-                    <span>일지</span>
-                </div>
-                <div className='menu3'onClick={()=>{navigate("/shop")}}>
-                    <img src={menu3}/> 
-                    <span>마켓</span>
-                </div>
-                <div className='menu4'>
-                    <img src={menu4}/> 
-                    <span>더보기</span>
-                </div>
-            </div>
         </div>
     );
 }
