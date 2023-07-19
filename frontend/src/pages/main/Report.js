@@ -1,13 +1,18 @@
 import '../../css/Report.css';
-import back from '../../img/back.svg';
 import circle from '../../img/circle.png';
 import checkArrow from '../../img/checkArrow.svg';
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import reportImg from '../../img/reportImg.png';
 import checkImg from '../../img/checkImg.svg';
+import checkImg2 from '../../img/checkImg2.svg';
+import checkImg3 from '../../img/checkImg3.svg';
+import SimpleTopBar from '../bar/SimpleTopBar'
+import { useNavigate } from 'react-router-dom';
 
 function Report(){
+    const naqvigate = useNavigate();
+
     let today = new Date();   
     let year = today.getFullYear(); // 년도
     let month = today.getMonth() + 1;  // 월
@@ -57,23 +62,21 @@ function Report(){
             checkPoint: "덴버의 경우 00질병이 발생할 가능성이 높아요."
         
         },
-        {   img: checkImg,
+        {   img: checkImg2,
             checkPoint: "성년기에는 발가락 사이가 습한 상태로 오래두면 지간염이 발생할 수 있어요. 목욕 후 발가락 사이도 완전히 건조시켜주세요."
         },
-        {   img: checkImg,
+        {   img: checkImg3,
             checkPoint: "추천 상품을 통해 우리 아이를 위한 맞춤형 식단을 준비해 보세요."
         }
     ]
 
     return(
         <div className="Report">
-            <div className='titleBox'>
-                <img className='back' src={back}></img>
-                <span className='reportTitle'>피부 검진 결과</span>
-            </div>
+            <SimpleTopBar text="눈 검진 결과"/>
+            <div style={{height: "40px"}}/>
 
             <div className='timeBox'>
-                <span className='time'>2023.01.20(금) 오후 6:42</span>
+                <span className='time'>2023.07.20(금) 오후 6:42</span>
             </div>
 
             <div className='noticeBar'>
@@ -100,9 +103,7 @@ function Report(){
                                 <div className='resultTitle'>
                                     {disease.name}
                                 </div>
-                                <img className='reulstImg'>
-                                    {disease.reportImg}
-                                </img>
+                                <img className='reulstImg' src={disease.img}/>
                                 <span className='resultDirection'>
                                     {disease.direction}
                                 </span>
@@ -139,25 +140,25 @@ function Report(){
 
             <div className='healthCheckBox'>
                 <span>우리 아이의 건강<br/>잊지 말고 케어해 주세요.</span>
-                {checkData.map(check =>{
-                            return (
-                                    <div className='check'>
-                                        <img className='checkImg'>{check.checkImg}</img>
-                                        <div className='checkText'>{check.checkPoint}</div>
-                                    </div>
-                            )
-                            })}
+                {checkData.map((check, i) =>{
+                    return (
+                        <div className='check' >
+                            <img className='checkImg' src={check.img}/>
+                            <div className='checkText'>{check.checkPoint}</div>
+                        </div>
+                    )
+                })}
             </div>
 
             <div className='LastBtnBox'>
-                <Link className='healthReportBtn' to="/check">
-                    건강일지
-                </Link>
-                <Link className='productRecommendBtn' to="/check">
-                    추천 상품 보러가기
-                </Link>
+                <div className='healthReportBtn' onClick={()=>naqvigate("/logs")}>
+                    <span>건강일지</span>
+                </div>
+                <div className='productRecommendBtn' onClick={()=>naqvigate("/products/list")}>
+                    <span>추천 상품 보러가기</span>
+                </div>
             </div>
-
+            <div style={{height: "60px"}}/>
         </div>
     );
 }
