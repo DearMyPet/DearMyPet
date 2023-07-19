@@ -19,6 +19,8 @@ import EPhone from './pages/login/EPhone';
 import FinElogin from './pages/login/FinElogin';
 import Check from './pages/main/Check';
 import Checking from './pages/main/Checking';
+import Report from './pages/main/Report';
+
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
           <Route path="/main" element={<Main/>} />
           <Route path="/check" element={<Check/>} />
           <Route path="/checking" element={<Checking/>} />
+          <Route path="/report" element={<Report/>} />
           <Route path="/shop" element={ <Shop/> } />
           <Route path="/detail/:id" element={ <Detail/> } />
           <Route path="/order" element={ <Order/> } />
