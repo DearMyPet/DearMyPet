@@ -34,7 +34,7 @@ const ProductRecommendation = () => {
             <ProductBox/>
             <div style={{height: "60px"}}/>
 
-            <div className="report-button">
+            <div className="recommend-product-button">
                 <button className='buy-button' onClick={()=>{ navigate("/shop")}}> 더 많은 상품 보러가기</button>
             </div>
         </div>
