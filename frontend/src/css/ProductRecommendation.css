@@ -1,0 +1,84 @@
+*{
+    font-family: 'Noto Sans KR';
+}
+
+.recommend-top{
+    margin: 90px 20px 30px 20px;
+    text-align: left;
+}
+
+.recommend-top span{
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.recommend-ingredient-box{
+    width: 350px;
+    height: 70px;
+    margin: 28px 20px;
+    border-radius: 20px;
+    background: #EFF0F4;
+}
+
+.recommend-ingredient{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 26px;
+}
+
+.recommend-ingredient div{
+    width: 1px;
+    height: 46px;
+    background-color: #b3b3b3;
+}
+
+.recommend-product-list{
+    margin: 30px 20px 0;
+    text-align: left;
+}
+
+.recommend-product-list span{
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.line4{
+    width: 350px;
+    height: 1px;
+    margin: 0 20px;
+    background-color: #eaeaea;
+}
+
+.recommend-product-box{
+    margin: 40px 0;
+    text-align: center;
+}
+
+.recommend-product-box img{
+    width: 160px;
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+.product-sub-text{
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.product-sub-text2{
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

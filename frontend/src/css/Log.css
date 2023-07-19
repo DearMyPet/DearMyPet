@@ -179,7 +179,7 @@
     width: 350px;
     left: 20px;
     height: 1px;
-    margin: 24px 0;
+    margin-top: 24px;
     background-color: #eaeaea;
 }
 
@@ -190,8 +190,7 @@
 }
 
 .desc-box{
-    position: absolute;
-    left: 40px;
+    margin: 0 20px;
     text-align: left;
 }
 
@@ -206,8 +205,41 @@
     line-height: 21px;
 }
 
+.disease-part{
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.disease-part div{
+    margin-right: 15px;
+    padding: 4px 22px;
+    text-align: center;
+    width: 76px;
+    height: 32px;
+    border-radius: 20px;
+    border: 2px solid #C5C5C5;
+    background-color: #fff;
+}
+
+.disease-part span{
+    color: #c5c5c5;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.disease-part .active {
+    border-color: #000;
+}
+
+.disease-part .active span {
+    color: #000;
+  }
+
 .log-detail-head{
-    margin: 36px 0 24px;
+    margin-bottom: 24px;
 }
 
 .log-detail-title{
@@ -228,4 +260,22 @@
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
+}
+
+.chartContainer canvas {
+    width: 350px;
+    height: 164px;
+    padding: 12px 12px 24px;
+    border-radius: 16px;
+    background-color: #3C3B49;
+}
+
+.desc-container{
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.desc-container span{
+    padding-left: 10px;
 }
