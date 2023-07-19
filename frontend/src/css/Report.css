@@ -1,28 +1,6 @@
 *{
     font-family: 'Noto Sans KR';
 }
-.titleBox{
-    margin-top: 30px;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-    
-}
-
-.back{
-    width: 11px;
-    height: 18px;
-    margin-right: 104px;
-}
-
-.reportTitle{
-    color: #000;
-    font-family: Noto Sans KR;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
 
 .timeBox{
     width: 186px;
@@ -165,7 +143,6 @@
     position: absolute;
     margin-left: 122px;
     color: #000;
-    font-family: Noto Sans KR;
     font-size: 28px;
     font-style: normal;
     font-weight: 700;
@@ -218,7 +195,6 @@
 
 .anomaliesTitle{
     color: #333;
-    font-family: Noto Sans KR;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -245,66 +221,72 @@
 }
 
 .healthCheckBox{
-    width: 323px;
+    width: 340px;
     text-align: left;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin: 0 auto;
+    margin-left: 34px;
+}
 
+.healthCheckBox span{
+    margin-bottom: 36px;
 }
 
 .check{
+    display: flex;
     font-size: 15.6px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    width: 323px;
+    margin-top: 34px;
+    margin-bottom: 26px;
 }
 
 .checkImg{
     width: 26px;
     height: 26px;
-    
 }
 
 .checkText{
-    float: right;
-    width: 261px;
-    margin-left: 12px;
-    
+    margin-left: 14px;
+    margin-top: 4px;
 }
 
+
 .LastBtnBox{
+    position: fixed;
+    display: flex;
     width: 346px;
-    margin-top: 100px;
-    margin-left: 22px;
-    margin-bottom: 44px;
+    bottom: 30px;
+    margin: 0 22px;
 }
 
 .healthReportBtn{
     width: 110px;
     height: 46px;
+    padding: 12px 26px;
     border-radius: 10px;
     background: #EDEDED;
+}
+
+.LastBtnBox span{
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    text-decoration: none;
-    color: #000000;
 }
 
 .productRecommendBtn{
     width: 192px;
     height: 46px;
+    margin-left: 44px;
+    padding: 12px 32px;
     border-radius: 10px;
-    background: #EDEDED;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-decoration: none;
-    color: #000000;
+    background: #2c2c2e;
+}
+
+.productRecommendBtn span{
+    color: #FFF;
 }
