@@ -82,3 +82,11 @@
     font-weight: 500;
     line-height: normal;
 }
+
+.recommend-product-button{
+    position: fixed;
+    width: 390px;
+    height: 60px;
+    bottom: 0;
+    background-color: white;
+}

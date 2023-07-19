@@ -87,8 +87,8 @@ function Report(){
             </div>
 
             <div className='checklinkBox'>
-                <Link className='checkLink' to="/check">
-                    눈 진단 다시하기
+                <Link className='checkLink' to="/main">
+                    진단 다시하기
                     <img className='checkArrow' src={checkArrow}></img>
                 </Link>
             </div>
@@ -133,9 +133,9 @@ function Report(){
             </div>
             
             <div className='lastReportLinkBox'>
-                <Link className='lastReportLink' to="/check">
+                <div className='lastReportLink' onClick={()=>naqvigate("/disease/reports", { state: {defaultValue: "1" }})}>
                     기록 모두 보기
-                </Link>
+                </div>
             </div>
 
             <div className='healthCheckBox'>
@@ -158,7 +158,7 @@ function Report(){
                     <span>추천 상품 보러가기</span>
                 </div>
             </div>
-            <div style={{height: "60px"}}/>
+            <div style={{height: "80px"}}/>
         </div>
     );
 }
