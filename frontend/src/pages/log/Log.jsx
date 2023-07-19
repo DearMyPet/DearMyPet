@@ -38,8 +38,8 @@ const Log = () => {
                 </div>
                 
                 <div className="block-form">
-                    <Block text="눈 건강" color={'#f9e467'} value="1"/>
-                    <Block text="피부 건강" color={'#f5be6e'} value="2"/>
+                    <Block text="눈 건강" color={'#f9e467'} path="/disease/reports" value="1"/>
+                    <Block text="피부 건강" color={'#f5be6e'} path="/disease/reports" value="2"/>
                 </div>
 
                 <div className="log-content">

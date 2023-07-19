@@ -14,11 +14,16 @@ const ProductRecommendation = () => {
                 <span>우리 아이에게는 <br/> 이런 성분이 좋아요!</span>
             </div>
 
-            <div className='recommend-ingredient'>
-                <span>루테인</span>
-                <span>베타카로틴</span>
-                <span>비타민A</span>
+            <div className='recommend-ingredient-box'>
+                <div className='recommend-ingredient'>
+                    <span>루테인</span>
+                    <div/>
+                    <span>베타카로틴</span>
+                    <div/>
+                    <span>비타민A</span>
+                </div>
             </div>
+            
 
             <div className='line4'/>
 
