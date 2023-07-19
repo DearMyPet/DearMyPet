@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 
-const Block = ({ text, color, value }) => {
+const Block = ({ text, color, path, value }) => {
     const navigate = useNavigate();
 
     const handleChange = () => {
-        navigate("/disease/reports", { state: { defaultValue: value } });
+        navigate(path, { state: { defaultValue: value } });
     }
     return (
         <div 

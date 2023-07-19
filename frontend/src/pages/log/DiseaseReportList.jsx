@@ -40,7 +40,7 @@ const DiseaseReportList = () => {
                             <Tab label="피부" value="2" />
                         </TabList>
                     </Box>
-                    
+
                     <TabPanel value="1"> 
                         <ReportList list={report}/> 
                     </TabPanel>
