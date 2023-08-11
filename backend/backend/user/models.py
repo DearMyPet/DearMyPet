@@ -13,3 +13,11 @@ class User(models.Model):
 
     class Meta:
         db_table = 'User'
+
+class Point(models.Model):
+    id = models.AutoField(primary_key=True, null=False)
+    points = models.IntegerField(default=0, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'Point'
