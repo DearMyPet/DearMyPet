@@ -21,6 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('user.urls')),
     path('api/dogs/', include('dog.urls')),
-    path('api/diseases/', include('disease_diary.urls')),
-    path('api/preventions/', include('prevention_diary.urls')),
+    path('api/disease/', include('disease_diary.urls')),
+    path('api/prevention/', include('prevention_diary.urls')),
+    path('api/diet/', include('diet_diary.urls')),
+    path('api/items/', include('product.urls')),
+    path('api/order/', include('product.urls')),
+    path('api/subscription/', include('subscription_service.urls')),
 ]
