@@ -1,9 +1,7 @@
 import '../../css/EPhone.css';
 import { Link } from 'react-router-dom';
 
-
-
-function EPhone(){
+const EPhone = () => {
     return(
         <div className="Ephone">
             <h4>사용자님의 <br/>
