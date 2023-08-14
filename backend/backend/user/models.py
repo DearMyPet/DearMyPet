@@ -1,9 +1,45 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-class User(models.Model):
+class UserManager(BaseUserManager):
+    def create_user(self, email, password, **kwargs):
+        if not email:
+            raise ValueError('이메일이 필요합니다.')
+
+        name = kwargs.get('name', None)
+        nickname = kwargs.get('nickname', None)
+        phone = kwargs.get('phone', None)
+
+        user = self.model(
+            email=email,
+            name=name,
+            nickname=nickname,
+            phone=phone
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email=None, password=None, **extra_fields):
+        superuser = self.create_user(
+            email=email,
+            password=password,
+        )
+
+        superuser.is_staff = True
+        superuser.is_superuser = True
+        superuser.is_active = True
+
+        superuser.save(using=self._db)
+        return superuser
+
+
+class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True, null=False)
     email = models.EmailField(unique=True, max_length=35, null=False)
-    password = models.CharField(max_length=20, null=False)
+    password = models.CharField(max_length=255, null=False)
     name = models.CharField(max_length=20, null=False)
     nickname = models.CharField(max_length=45, null=False)
     phone = models.CharField(max_length=15, null=False)
@@ -11,8 +47,18 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True, blank=True)
     is_deleted = models.BooleanField(default=False)
 
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+
     class Meta:
         db_table = 'User'
+
+# User 테이블 생성시 자동으로 point 테이블 생성
+@receiver(post_save, sender=User)
+def create_point_for_new_user(sender, instance, created, **kwargs):
+    if created:
+        Point.objects.create(user=instance)
 
 class Point(models.Model):
     id = models.AutoField(primary_key=True, null=False)
