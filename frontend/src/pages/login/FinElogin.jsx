@@ -3,7 +3,7 @@ import FinJoinIcon from '../../img/FinJoinIcon.png';
 import { Link } from 'react-router-dom';
 
 
-function FinElogin(){
+const FinElogin = () => {
     return(
         <div className="FinElogin">
             <h4>DEARMYPET님, <br/>
@@ -14,7 +14,7 @@ function FinElogin(){
 
             <img className='finlogin-logo' src={FinJoinIcon}/>
 
-            <Link className='loginBtn' to="/elogin">로그인</Link>
+            <Link className='loginBtn' to="/login">로그인</Link>
         </div>
     );
 }

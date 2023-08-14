@@ -2,23 +2,40 @@ import '../../css/Main.css';
 import { Link } from 'react-router-dom';
 import NavBottomBar from '../bar/NavBottomBar';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pet from "../../img/petImg.svg"
+import axios from 'axios';
 
 function Main(){
     const naqvigate = useNavigate();
-    const [name, setName] = useState("덴버");
+    const [name, setName] = useState();
+    const [img, setImg] = useState();
+
+    useEffect(() => {
+        const userId = sessionStorage.getItem("user");
+        const url = `http://127.0.0.1:8000/api/dogs/${userId}`;
+        axios.get(url)
+        .then((response)=>{
+            const { id, name, img } = response.data;
+            sessionStorage.setItem("dog", id);
+            setName(name);
+            img? setImg(img) : setImg(Pet);
+        })
+        .catch(function(error) {
+            setName("반려견을 등록하세요.");
+            setImg(Pet);
+        })
+    })
 
     return(    
         <div className="Main">
             
             <div className="log-body">
                 <div className="log-pro">
-                        <img src={Pet}/>
+                        <img src={img}/>
                         <span>{name}</span>
                 </div>
             </div>
-
 
             <h4 className='main-title'>진단</h4>
 

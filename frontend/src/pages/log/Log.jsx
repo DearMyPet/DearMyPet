@@ -1,6 +1,6 @@
 import NavBottomBar from "../bar/NavBottomBar";
 import "../../css/Log.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pet from "../../img/petImg.svg"
 import Dlog1 from "../../img/dlog1.svg"
 import Dlog2 from "../../img/dlog2.svg"
@@ -12,20 +12,38 @@ import Clog2 from "../../img/clog2.svg"
 import { Block, CheckBox, CustomBlock } from "../../components/Blocks"
 import { SlArrowRight } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Log = () => {
-    const [name, setName] = useState("덴버");
     const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [img, setImg] = useState();
 
     const handleToDetail = (detailName) => {
         navigate("/logs/details", { state: {log: detailName }});
     };
 
+    useEffect(() => {
+        const userId = sessionStorage.getItem("user");
+        const url = `http://127.0.0.1:8000/api/dogs/${userId}`;
+        axios.get(url)
+        .then((response)=>{
+            const { id, name, img } = response.data;
+            sessionStorage.setItem("dog", id);
+            setName(name);
+            img? setImg(img) : setImg(Pet);
+        })
+        .catch(function(error) {
+            setName("반려견을 등록하세요.");
+            setImg(Pet);
+        })
+    })
+
     return (
         <div>
             <div className="log-body">
                 <div className="log-profile">
-                    <img src={Pet}/>
+                    <img src={img}/>
                     <span>{name}</span>
                 </div>
 
@@ -89,7 +107,7 @@ const Log = () => {
 
                 <div className="block-form">
                     <CustomBlock text="현재 몸무게" color={"#d9e8fb"} value="5.0" unit="kg"/>
-                    <CustomBlock text="현재 몸무게" subText= "현재 몸무게 대비" color={"#368DF6"} value="0" unit="%"/>
+                    <CustomBlock text="현재 몸무게" subText= "현재 몸무게 대비" color={"#368DF6"} value="적정"/>
                 </div>
 
                 <div className="log-content">

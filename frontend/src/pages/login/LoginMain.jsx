@@ -3,10 +3,7 @@ import kakaologo from '../../img/kakaologo.svg'
 import '../../css/LoginMain.css';
 import { Link } from 'react-router-dom';
 
-
-
-function LoginMain() {
-
+const LoginMain = () => {
 
   return (
     <div className="Login">
@@ -19,9 +16,9 @@ function LoginMain() {
         </button>
         
         <div className='email-login'>
-          <Link className='link' to="/ejoin">이메일 가입</Link>
+          <Link className='link' to="/join">이메일 가입</Link>
           <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-          <Link className='link' to="/elogin">이메일 로그인</Link>
+          <Link className='link' to="/login">이메일 로그인</Link>
         </div>
     </div>
   );

@@ -33,9 +33,9 @@ function App() {
           <Route path="/disease/reports" element={<DiseaseReport/>} />
           <Route path="/products/list" element={<ProductRecommendation/>} />
           <Route path="/main" element={ <Main/> } />
-          <Route path="/ejoin" element={<EJoin/>} />
-          <Route path="/elogin" element={<ELogin/>} />
-          <Route path="/ephone" element={<EPhone/>} />
+          <Route path="/join" element={<EJoin/>} />
+          <Route path="/login" element={<ELogin/>} />
+          <Route path="/phone" element={<EPhone/>} />
           <Route path="/finelogin" element={<FinElogin/>} />
           <Route path="/main" element={<Main/>} />
           <Route path="/check" element={<Check/>} />

@@ -2,14 +2,23 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import '../../css/EJoin.css';
-// import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
-
-function EJoin() {
-  
+const EJoin = () => {
+  const navigate = useNavigate();
   // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState("");
+
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  // };
+
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
   // const [isDuplicate, setIsDuplicate] = useState(false);
   // const [emailList, setEmailList] = useState(['guri']);
 
@@ -25,7 +34,6 @@ function EJoin() {
   //     setEmail('');
   //   }
   // };
-
 
 
   const formSchema = yup.object({
@@ -46,6 +54,7 @@ function EJoin() {
       .string()
       .oneOf([yup.ref('password')], '비밀번호가 다릅니다.'),
   });
+  
 
   const {
     register,
@@ -62,16 +71,21 @@ function EJoin() {
   return (
     <div className="EJoin">
       <h4>안녕하세요 👋 <br/>
-          필수 정보를 알려주세요
+          필수 정보를 알려주세요.
       </h4>
 
       <div className='info'>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+        <form onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(onSubmit)();
+        }}>
           <span className='email-title'>이메일</span>
           <input className='email-box'
             type='email'
             name='email' 
             // value={email}
+            // onChange={handleEmailChange}
             // onChange={handleChange}
             placeholder="이메일을 입력해 주세요"
             {...register('email')} />
@@ -82,7 +96,8 @@ function EJoin() {
           <input className='pw-box'
             type="password"
             name="password"
-            
+            // value={password}
+            // onChange={handlePasswordChange}
             placeholder="비밀번호를 입력해 주세요"
             {...register('password')}
           />
@@ -96,13 +111,11 @@ function EJoin() {
           {...register('passwordConfirm')}
           />
           {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
-          <Link className='nextBtn' to="/ephone" disabled={errors || watch()}>다음으로</Link>
+          {/* <div className='nextBtn' onClick={handleLogin} disabled={errors || watch()}>다음으로</div> */}
+          <button className='nextBtn' onClick={()=>{navigate("/phone")}}>다음으로</button>
 
         </form>
-
       </div>
-
-
     </div>
   );
 }

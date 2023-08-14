@@ -13,7 +13,13 @@ const LogDetail = () => {
     const handleTabClick = (tabName) => {
         setActiveTab(tabName);
     };
-    
+
+    const obj = {
+        "질병" : <DiseaseLog/>,
+        "예방" : <div/>,
+        "맞춤" : <div/>
+    }
+
     return (
         <div>
             <SimpleTopBar/>
@@ -26,7 +32,7 @@ const LogDetail = () => {
                             className={`nav-link ${activeTab === "질병" ? 'active' : ''}`}
                             onClick={() => handleTabClick("질병")}> 질병 </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <a
                             className={`nav-link ${activeTab === "예방" ? 'active' : ''}`}
                             onClick={() => handleTabClick("예방")}> 예방 </a>
@@ -39,7 +45,7 @@ const LogDetail = () => {
                 </ul>
             </div>
 
-            <DiseaseLog/>
+            {obj[activeTab]}
 
             <div className="report-button">
                 <button className='buy-button' onClick={()=>{ navigate("/products/list")}}> 추천 상품 보러가기</button>
