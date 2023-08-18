@@ -69,8 +69,6 @@ INSTALLED_APPS = [
     'user',
     'dog',
     'disease_diary',
-    'prevention_diary',
-    'diet_diary',
     'product',
     'order',
     'subscription_service',

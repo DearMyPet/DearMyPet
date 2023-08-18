@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **kwargs):
         if not email:
@@ -44,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     nickname = models.CharField(max_length=45, null=False)
     phone = models.CharField(max_length=15, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
     is_deleted = models.BooleanField(default=False)
 
     objects = UserManager()
@@ -54,11 +55,32 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = 'User'
 
-# User 테이블 생성시 자동으로 point 테이블 생성
+
+# User 테이블 생성시 자동으로 point, cart 테이블 생성
 @receiver(post_save, sender=User)
-def create_point_for_new_user(sender, instance, created, **kwargs):
+def create_for_new_user(sender, instance, created, **kwargs):
     if created:
         Point.objects.create(user=instance)
+        Cart.objects.create(user=instance)
+
+
+class Cart(models.Model):
+    id = models.AutoField(primary_key=True, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'Cart'
+
+
+class CartItem(models.Model):
+    id = models.AutoField(primary_key=True, null=False)
+    quantity = models.IntegerField(null=False)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.ForeignKey('product.Product', on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'CartItem'
+
 
 class Point(models.Model):
     id = models.AutoField(primary_key=True, null=False)

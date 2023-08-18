@@ -5,6 +5,7 @@ from .serializers import *
 from rest_framework import status
 from rest_framework.response import Response
 
+
 # 회원가입
 class Join(APIView):
     def post(self, request):
@@ -20,10 +21,10 @@ class Join(APIView):
                 }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # 로그인
 class Login(APIView):
     def post(self, request):
-        # request.data = User.objects.filter(is_deleted=False)
         serializer = JWTLoginSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.validated_data['user']
@@ -35,10 +36,12 @@ class Login(APIView):
                 }, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # 로그아웃
 class Logout(APIView):
     def delete(self, request):
         return Response({"message": "Logout 성공"}, status=status.HTTP_202_ACCEPTED)
+
 
 class PointView(APIView):
     def get(self, request, id):

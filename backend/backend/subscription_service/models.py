@@ -2,6 +2,7 @@ from django.db import models
 from product.models import Product, Ingredient
 from user.models import User
 
+
 class SubscriptionService(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     price = models.DecimalField(max_digits=8, decimal_places=0, null=False)

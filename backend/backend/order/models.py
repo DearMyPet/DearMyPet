@@ -2,6 +2,7 @@ from django.db import models
 from user.models import User
 from product.models import Product
 
+
 class Order(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     address_name = models.CharField(max_length=45, null=False)
@@ -18,6 +19,7 @@ class Order(models.Model):
     class Meta:
         db_table = 'Order'
 
+
 class OrderItem(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     quantity = models.IntegerField(null=False)
@@ -27,6 +29,7 @@ class OrderItem(models.Model):
     class Meta:
         db_table = 'OrderItem'
 
+
 class Delivery(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     status = models.CharField(max_length=45, default="배송 준비 중")
@@ -35,18 +38,3 @@ class Delivery(models.Model):
     class Meta:
         db_table = 'Delivery'
 
-class Cart(models.Model):
-    id = models.AutoField(primary_key=True, null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'Cart'
-
-class CartItem(models.Model):
-    id = models.AutoField(primary_key=True, null=False)
-    quantity = models.IntegerField(null=False)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'CartItem'
