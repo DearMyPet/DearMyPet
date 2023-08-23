@@ -1,22 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { SlArrowLeft } from "react-icons/sl";
 import InfoBar from '../bar/InfoBar';
 import { SlArrowRight } from "react-icons/sl";
 import cartImg1 from "../../img/cartImg1.svg"
 import cartImg2 from "../../img/cartImg2.svg"
 import { IoCloseOutline } from "react-icons/io5";
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
+import SimpleTopBar from "../bar/SimpleTopBar";
 
 const Cart = () => {
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
 
-    const handleGoBack = () => {
-        navigate(-1);
-      };
     const addToCart = (item) => {
         const existingItem = cartItems.find((cartItem) => cartItem.name === item.name);
         if (existingItem) {
@@ -70,12 +65,7 @@ const Cart = () => {
     
     return(
         <div>
-            <Navbar fixed="top" bg="white">
-                <Container>
-                    <Navbar.Brand > <SlArrowLeft onClick={handleGoBack}/></Navbar.Brand>
-                    <Navbar.Brand className="order-header">장바구니</Navbar.Brand>
-                </Container>
-            </Navbar>
+            <SimpleTopBar text="장바구니"/>
 
             {
                 calculateTotalPrice() < 19800 ? (
@@ -96,13 +86,13 @@ const Cart = () => {
                     {cartItems.length === 0 ? (
                         <div style={{textAlign:"center"}}>
                             <span>장바구니가 비어있습니다.</span><br/>
-                            <button className="go-product-list" onClick={()=>{ navigate("/detail")}}>상품 보러가기</button>
+                            <button className="go-product-list" onClick={()=>{ navigate("/shop")}}>상품 보러가기</button>
                         </div>
                     ) : (
                         <div>
                             {cartItems.map((item, index) => (
                                 <div className="items-rectangle">
-                                    <img className="cart-itmes-img" src={item.image}/>
+                                    <img className="cart-itmes-img" src={item.image} alt=""/>
                                     <span className="cart-items-title">{item.name}</span>
                                     <IoCloseOutline className="cart-itmes-delete" onClick={() => removeFromCart(index)}/><br/>
                                     <div className="items-rectangle-sub">
@@ -116,7 +106,7 @@ const Cart = () => {
                         </div>
                     )}
                     {
-                        calculateTotalPrice() == 0? null : 
+                        calculateTotalPrice() === 0? null : 
                         <div className="total-price">
                             {calculateTotalPrice().toLocaleString()} 원 + {calculateTotalCost() - calculateTotalPrice()} 원 (배송비) = 
                             {calculateTotalCost().toLocaleString()} 원
@@ -132,7 +122,7 @@ const Cart = () => {
             </div>
 
             {
-                calculateTotalPrice() == 0? null : 
+                calculateTotalPrice() === 0? null : 
                 <div>
                     <div className="line-thin" style={{marginTop:"60px"}}/>
                     <div className="cart-info">

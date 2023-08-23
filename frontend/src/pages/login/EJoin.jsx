@@ -1,40 +1,16 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import '../../css/EJoin.css';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios';
 
 const EJoin = () => {
   const navigate = useNavigate();
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState("");
 
-  // const handleEmailChange = (e) => {
-  //   setEmail(e.target.value);
-  // };
-
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
-
-  // const [isDuplicate, setIsDuplicate] = useState(false);
-  // const [emailList, setEmailList] = useState(['guri']);
-
-  // const handleChange = (e) => {
-  //   setEmail(e.target.value);
-  //   setIsDuplicate(emailList.includes(e.target.value));
-  // };
-
-  // const handleSubmit2 = (e) => {
-  //   e.preventDefault();
-  //   if (!isDuplicate) {
-  //     setEmailList([...emailList, email]);
-  //     setEmail('');
-  //   }
-  // };
-
+  const [isDuplicate, setIsDuplicate] = useState(false);
+  const [isCheckComplete, setIsCheckComplete] = useState(false);
 
   const formSchema = yup.object({
     email: yup
@@ -55,18 +31,46 @@ const EJoin = () => {
       .oneOf([yup.ref('password')], '비밀번호가 다릅니다.'),
   });
   
-
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    navigate("/phone", { state: { formData: data } });
+  }
+
+  const checkEmail = (email) => {
+    axios.post("http://127.0.0.1:8000/api/users/check_email",{
+      email: email,
+    })
+    .then((response)=>{
+      setIsDuplicate(false); 
+      setIsCheckComplete(true); 
+      alert("사용 가능한 이메일입니다.");
+      
+    })
+    .catch((error)=>{
+      setIsDuplicate(true);
+      setIsCheckComplete(true);
+      alert("이메일이 이미 존재합니다.");
+    })
+  };
+
+  const handleCheckEmail = () => {
+    const emailValue = document.querySelector('.email-box').value;
+    if(emailValue){
+      checkEmail(emailValue);
+    }else{
+      alert("이메일을 입력해주세요.");
+    }
+  };
+
+  const allValid = !errors.email && !errors.password && !errors.passwordConfirm && !isDuplicate && isCheckComplete;
 
   return (
     <div className="EJoin">
@@ -75,45 +79,45 @@ const EJoin = () => {
       </h4>
 
       <div className='info'>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <form onSubmit={(e) => {
             e.preventDefault();
             handleSubmit(onSubmit)();
         }}>
-          <span className='email-title'>이메일</span>
-          <input className='email-box'
-            type='email'
-            name='email' 
-            // value={email}
-            // onChange={handleEmailChange}
-            // onChange={handleChange}
-            placeholder="이메일을 입력해 주세요"
-            {...register('email')} />
-            {errors.email && <p>{errors.email.message}</p>}
-            {/* <button className='doubleBtn' onClick={()=> {isDuplicate && alert(<p>Email already exists!</p>)}}>중복확인</button>      */}
 
-          <span className='pw-title'>비밀번호</span>
-          <input className='pw-box'
+          <div className='auth-form'>
+            <span className='auth-title'>이메일</span>
+            <input className='email-box'
+              type='email'
+              name='email' 
+              placeholder="이메일을 입력해 주세요"
+              {...register('email')} />
+              {errors.email && <p className='error'>{errors.email.message}</p>}
+              <button className='doubleButton' onClick={handleCheckEmail}>중복 확인</button>
+          </div>
+
+          <div className='auth-form'>
+            <span className='auth-title'>비밀번호</span>
+            <input className='auth-box'
+              type="password"
+              name="password"
+              placeholder="비밀번호를 입력해 주세요"
+              {...register('password')}
+            />
+            {errors.password && <p className='error'>{errors.password.message}</p>}
+          </div>
+
+          <div className='auth-form'>
+            <span className='auth-title'>비밀번호 확인</span>
+            <input className='auth-box'
             type="password"
-            name="password"
-            // value={password}
-            // onChange={handlePasswordChange}
-            placeholder="비밀번호를 입력해 주세요"
-            {...register('password')}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-          
-          <span className='pwCheck-title'>비밀번호 확인</span>
-          <input className='pwCheck-box'
-          type="password"
-          name="passwordConfirm"
-          placeholder="비밀번호 확인"
-          {...register('passwordConfirm')}
-          />
-          {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
-          {/* <div className='nextBtn' onClick={handleLogin} disabled={errors || watch()}>다음으로</div> */}
-          <button className='nextBtn' onClick={()=>{navigate("/phone")}}>다음으로</button>
+            name="passwordConfirm"
+            placeholder="비밀번호 확인"
+            {...register('passwordConfirm')}
+            />
+            {errors.passwordConfirm && <p className='error'>{errors.passwordConfirm.message}</p>}
+          </div>
 
+          <button className='nextButton' style={{background: allValid ? 'black' : ''}} onClick={handleSubmit(onSubmit)}>다음으로</button>
         </form>
       </div>
     </div>

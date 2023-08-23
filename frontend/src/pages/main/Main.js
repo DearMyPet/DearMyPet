@@ -1,40 +1,68 @@
 import '../../css/Main.css';
-import { Link } from 'react-router-dom';
+import "../../css/Log.css"
 import NavBottomBar from '../bar/NavBottomBar';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import Pet from "../../img/petImg.svg"
+import plusPet from "../../img/plusPet.svg"
 import axios from 'axios';
+import { BiPlusCircle } from "react-icons/bi";
+import DogModal from '../../components/DogModal';
 
 function Main(){
-    const naqvigate = useNavigate();
+    const navigate = useNavigate();
     const [name, setName] = useState();
     const [img, setImg] = useState();
 
-    useEffect(() => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+    
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const handleCheckLink = (path) => () => {
+        const dogId = sessionStorage.getItem("dog");
+        if (!dogId) {
+            alert("강아지를 등록하고 진행해주세요!");
+            openModal();
+            return false;
+        }
+        navigate(path);
+    }
+
+    const fetchData = () => {
         const userId = sessionStorage.getItem("user");
         const url = `http://127.0.0.1:8000/api/dogs/${userId}`;
         axios.get(url)
-        .then((response)=>{
+        .then((response) => {
             const { id, name, img } = response.data;
             sessionStorage.setItem("dog", id);
             setName(name);
-            img? setImg(img) : setImg(Pet);
+            img ? setImg(img) : setImg(plusPet);
         })
-        .catch(function(error) {
-            setName("반려견을 등록하세요.");
-            setImg(Pet);
-        })
-    })
+        .catch((error) => {
+            setName("반려견을 등록하세요");
+            setImg(plusPet);
+        });
+    }
+
+    useEffect(fetchData, []);
 
     return(    
         <div className="Main">
-            
-            <div className="log-body">
-                <div className="log-pro">
-                        <img src={img}/>
-                        <span>{name}</span>
-                </div>
+            <div className="log-pro">
+                    <img src={img} alt="pet"/>
+                    <span>{name}</span> 
+                    <BiPlusCircle className="edit-dog" onClick={openModal}/>
+                    <DogModal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        onActionComplete={fetchData}
+                        currentImg={img}
+                    />
             </div>
 
             <h4 className='main-title'>진단</h4>
@@ -44,24 +72,24 @@ function Main(){
             </div>
 
             <div className='main-content'> 
-                <Link className='eye-examination' to="/check">
+                <div className='eye-examination' onClick={handleCheckLink("/check")}>
                     <span className='box-title'>눈 건강<br/></span>
                     <span className='box-exp'>이상 징후 체크</span>
-                </Link>
-                <Link className='skin-examination' to="/check">
+                </div>
+                <div className='skin-examination' onClick={handleCheckLink("/check")}>
                     <span className='box-title'>피부 건강<br/></span>
                     <span className='box-exp'>이상 징후 체크</span>
-                </Link>
-                <Link className='examination-report' to="/disease/reports">
+                </div>
+                <div className='examination-report' onClick={handleCheckLink("/disease/reports")}>
                     <span className='box-title'>진단 기록 보기</span>
-                </Link>
+                </div>
             </div>
             <div>
                 <span className='guide-title'>🔎 진단 가이드 확인하기</span>
                 <div className='guide-box'>
-                    <div className='eye-guide' onClick={()=>naqvigate("/")}>눈 진단 가이드 👀</div>
+                    <div className='eye-guide' onClick={()=>navigate("/")}>눈 진단 가이드 👀</div>
                     <div id='line'/>
-                    <div className='skin-guide' onClick={()=>naqvigate("/")}>피부 진단 가이드 🐾</div>
+                    <div className='skin-guide' onClick={()=>navigate("/")}>피부 진단 가이드 🐾</div>
                 </div>
             </div>
             <NavBottomBar/>

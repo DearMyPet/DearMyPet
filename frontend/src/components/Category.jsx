@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import Circle from '../img/circle.svg'
+import All from '../img/ALL.svg'
+import Petbox from '../img/PETBOX.svg'
+import Eye from '../img/EYE.svg'
+import Skin from '../img/SKIN.svg'
 
 const Catagory = () => {
   const navigate = useNavigate();
@@ -11,20 +14,20 @@ const Catagory = () => {
   return(
     <div className='category-list'>
       <div onClick={()=>handleCategoryClick("전체 보기")}>
-        <img src={Circle}/> 
+        <img src={All} alt="All"/> 
         <span>전체 보기</span>
       </div>
-      <div onClick={()=>handleCategoryClick("수제 사료")}>
-        <img src={Circle}/> 
-        <span>수제 사료</span>
+      <div onClick={()=>handleCategoryClick("정기구독")}>
+        <img src={Petbox} alt="PetBox"/> 
+        <span>정기구독</span>
       </div>
-      <div onClick={()=>handleCategoryClick("수제 간식")}>
-        <img src={Circle}/> 
-        <span>수제 간식</span>
+      <div onClick={()=>handleCategoryClick("눈")}>
+        <img src={Eye} alt="Eye"/> 
+        <span>눈</span>
       </div>
-      <div onClick={()=>handleCategoryClick("정기 구독")}>
-        <img src={Circle}/> 
-        <span>정기 구독</span>
+      <div onClick={()=>handleCategoryClick("피부")}>
+        <img src={Skin} alt="Skin"/> 
+        <span>피부</span>
       </div>
     </div>
   );
