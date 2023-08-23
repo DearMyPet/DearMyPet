@@ -30,6 +30,7 @@ class JWTJoinSerializer(serializers.ModelSerializer):
         )
         return user
 
+
 class JWTLoginSerializer(serializers.ModelSerializer):
     email = serializers.CharField(required=True, write_only=True)
     password = serializers.CharField(required=True, write_only=True)
@@ -49,7 +50,9 @@ class JWTLoginSerializer(serializers.ModelSerializer):
             }
         raise serializers.ValidationError("인증 정보가 잘못되었습니다.")
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'password', 'phone', 'name', 'nickname', 'created_at', 'updated_at', 'is_deleted']
+        fields = '__all__'
+        # fields = ['id', 'email', 'password', 'phone', 'name', 'nickname', 'created_at', 'updated_at', 'is_deleted']

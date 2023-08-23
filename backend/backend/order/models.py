@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from user.models import User
 from product.models import Product
 
@@ -7,6 +9,7 @@ class Order(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     address_name = models.CharField(max_length=45, null=False)
     recipient = models.CharField(max_length=45, null=False)
+    recipient_phone = models.CharField(max_length=15, null=False)
     address = models.CharField(max_length=100, null=False)
     delivery_memo = models.CharField(max_length=255, blank=True)
     points_used = models.IntegerField(default=0)
@@ -28,6 +31,12 @@ class OrderItem(models.Model):
 
     class Meta:
         db_table = 'OrderItem'
+
+
+@receiver(post_save, sender=Order)
+def create_for_new_delivery(sender, instance, created, **kwargs):
+    if created:
+        Delivery.objects.create(order=instance)
 
 
 class Delivery(models.Model):

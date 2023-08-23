@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Dog, WeightRecord, CheckListItem
+from .models import Dog, WeightRecord, CheckListItem, MedicalRecord, Vaccination, Medication
 
 
 class DogSerializer(serializers.ModelSerializer):
@@ -8,15 +8,28 @@ class DogSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DogInfo(serializers.ModelSerializer):
-    class Meta:
-        model = Dog
-        fields = ['id', 'name', 'img']
-
-
+# 예방 일지
 class CheckListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckListItem
+        fields = '__all__'
+
+
+class MedicalRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicalRecord
+        fields = '__all__'
+
+
+class VaccinationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vaccination
+        fields = '__all__'
+
+
+class MedicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medication
         fields = '__all__'
 
 

@@ -38,13 +38,13 @@ class ProductInfo(models.Model):
     size = models.IntegerField(null=False)
     content1 = models.CharField(max_length=255, null=False)
     content2 = models.CharField(max_length=255, null=False)
-    content_img1 = models.CharField(max_length=255, null=False)
-    ingredient_img1 = models.CharField(max_length=255, null=False)
-    ingredient_img2 = models.CharField(max_length=255, null=False)
+    content_img1 = models.CharField(max_length=255, null=True)
+    ingredient_img1 = models.CharField(max_length=255, null=True)
+    ingredient_img2 = models.CharField(max_length=255, null=True)
     ingredient1 = models.CharField(max_length=255, null=False)
     ingredient2 = models.CharField(max_length=255, null=False)
-    ship_method_img = models.CharField(max_length=255, null=False)
-    summary_info_img = models.CharField(max_length=255, null=False)
+    ship_method_img = models.CharField(max_length=255, null=True)
+    summary_info_img = models.CharField(max_length=255, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     class Meta:

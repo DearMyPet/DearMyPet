@@ -4,6 +4,7 @@ from .serializers import *
 from rest_framework import status
 from rest_framework.response import Response
 from user.models import User
+from utils.cloudinary_helpers import upload_image_to_cloudinary
 
 
 # 반려견 정보 확인 및 등록
@@ -14,13 +15,18 @@ class DogAPIview(APIView):
         if not dogs:
             return Response({"message": "반려견을 등록하세요."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = DogInfo(dogs)
+        serializer = DogSerializer(dogs)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, id):
         data = request.data
         try:
             user = User.objects.get(pk=id)
+
+            if 'img' in data:
+                image_file = data['img']
+                uploaded_image_url = upload_image_to_cloudinary(image_file)
+                data['img'] = uploaded_image_url
 
             dog = Dog.objects.create(
                 name=data['name'],
@@ -39,9 +45,50 @@ class DogAPIview(APIView):
         except KeyError as e:
             return Response({"error": f"{e} 정보가 누락되었습니다."}, status=status.HTTP_400_BAD_REQUEST)
 
+    def patch(self, request, id):
+        dog_id = request.data.get('id')
+        name = request.data.get('name')
+        weight = request.data.get('weight')
+        age = request.data.get('age')
+        breed = request.data.get('breed')
+        img = request.data.get('img')
 
-# 예방 일지
-class PreventionDiaryAPIView(APIView):
+        try:
+            dog = Dog.objects.get(id=dog_id)
+
+            if name:
+                dog.name = name
+            if weight:
+                dog.weight = weight
+            if age:
+                dog.age = age
+            if breed:
+                dog.breed = breed
+            if img:
+                uploaded_image_url = upload_image_to_cloudinary(img)
+                dog.img = uploaded_image_url
+
+            dog.save()
+            return Response({"message": "성공적으로 업데이트되었습니다."}, status=status.HTTP_200_OK)
+
+        except Dog.DoesNotExist:
+            return Response({"message": "강아지를 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, id):
+        # dog_id = request.data.get('id')
+        dog_id = request.query_params.get('id')
+        try:
+            dog = Dog.objects.get(id=dog_id)
+            dog.delete()
+            return Response(status=status.HTTP_200_OK)
+
+        except Dog.DoesNotExist:
+            return Response({"message": "해당 반려견을 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+# 예방 일지 - 체크 리스트
+class CheckListAPIView(APIView):
     def get(self, request, dog_id):
         prevention_diary = PreventionDiary.objects.get(dog_id=dog_id)
         check_list_items = CheckListItem.objects.filter(check_list__prevention_diary=prevention_diary)
@@ -72,18 +119,113 @@ class PreventionDiaryAPIView(APIView):
 
     def patch(self, request, dog_id):
         item_id = request.data.get('item_id')
+        item_content = request.data.get('item')  # 변경할 항목 내용
+        is_checked = request.data.get('is_checked')  # 변경할 체크 여부
 
         if not item_id:
             return Response({"message": "item_id를 제공해주세요."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            check_list_item = CheckListItem.objects.get(id=item_id)
-            check_list_item.is_checked = True
+            check_list_item = CheckListItem.objects.get(id=item_id, check_list__prevention_diary__dog_id=dog_id)
+
+            if item_content is not None:
+                check_list_item.item = item_content
+
+            if is_checked is not None:
+                check_list_item.is_checked = is_checked
+
             check_list_item.save()
             return Response({"message": "성공적으로 업데이트되었습니다."}, status=status.HTTP_200_OK)
 
         except CheckListItem.DoesNotExist:
             return Response({"message": "해당 체크리스트 항목을 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, dog_id):
+        item_id = request.data.get('item_id')
+        if not item_id:
+            return Response({"message": "item_id를 제공해주세요."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            check_list_item = CheckListItem.objects.get(id=item_id, check_list__prevention_diary__dog_id=dog_id)
+            check_list_item.delete()
+
+            return Response({"message": "체크리스트 항목이 성공적으로 삭제되었습니다."}, status=status.HTTP_200_OK)
+
+        except CheckListItem.DoesNotExist:
+            return Response({"message": "해당 체크리스트 항목을 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+
+# 예방 일지 - 병원 기록
+class MedicalRecordAPIView(APIView):
+    def get(self, request, dog_id):
+        medical_record = MedicalRecord.objects.filter(prevention_diary__dog_id=dog_id)
+        if not medical_record.exists():
+            return Response({"message": "진료 내역이 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = MedicalRecordSerializer(medical_record, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, dog_id):
+        prevention_diary = PreventionDiary.objects.get(dog_id=dog_id)
+        data = request.data
+        data['prevention_diary'] = prevention_diary.id
+
+        serializer = MedicalRecordSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# 예방 일지 - 예방 접종
+class VaccinationAPIView(APIView):
+    def get(self, request, dog_id):
+        vaccination_record = Vaccination.objects.filter(prevention_diary__dog_id=dog_id)
+
+        if not vaccination_record.exists():
+            return Response({"message": "예방 접종 내역이 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = VaccinationSerializer(vaccination_record, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, dog_id):
+        prevention_diary = PreventionDiary.objects.get(dog_id=dog_id)
+        data = request.data
+        data['prevention_diary'] = prevention_diary.id
+
+        serializer = VaccinationSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# 예방 일지 - 약물 복용
+class MedicationAPIView(APIView):
+    def get(self, request, dog_id):
+        medication_record = Medication.objects.filter(prevention_diary__dog_id=dog_id)
+
+        if not medication_record.exists():
+            return Response({"message": "약물 복용 내역이 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = MedicationSerializer(medication_record, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, dog_id):
+        prevention_diary = PreventionDiary.objects.get(dog_id=dog_id)
+        data = request.data
+        data['prevention_diary'] = prevention_diary.id
+
+        serializer = MedicationSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # 맞춤 일지 페이지
