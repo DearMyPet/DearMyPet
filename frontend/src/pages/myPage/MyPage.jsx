@@ -2,38 +2,62 @@ import "../../css/MyPage.css"
 import SimpleTopBar from "../bar/SimpleTopBar"
 import NavBottomBar from "../bar/NavBottomBar";
 import { SlArrowRight } from "react-icons/sl";
-import Circle from "../../img/circle.svg"
 import Review from "../../img/review.svg"
 import Delivery from "../../img/delivery.svg"
 import { BsInstagram } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { PiUserCircle } from "react-icons/pi";
 
 const MyPage = () => {
+    const [nickname, setNickname] = useState(""); 
+    const [point, setPoint] = useState(0);
+
+    useEffect( () => {
+        const userId = sessionStorage.getItem("user");
+        const user = () => {
+            axios.get(`http://127.0.0.1:8000/api/users/info/${userId}`)
+            .then(response => {
+                setNickname(response.data.nickname);
+            })
+        }
+        const point = () => {
+            axios.get(`http://127.0.0.1:8000/api/users/${userId}`)
+            .then(response => {
+                setPoint(response.data.point);
+            })
+        }
+        user()
+        point()
+    }, []);
+
     return(
         <div>
             <SimpleTopBar text="더보기"/>
             <div style={{height: "60px"}}/>
 
             <div className="mypage-profile">
-                <img src={Circle}/>
-                <span>구리누나</span>
+                <PiUserCircle className="user-profile"/>
+                {/* <img src={Circle} alt="user"/> */}
+                <span>{nickname}</span>
                 <SlArrowRight className="mypage-arrow"/>
             </div>
             
             <div className="point-box">
                 <div className="point-circle">
-                    <span>p</span>
+                    <span>P</span>
                 </div>
                 <span className="point-text">내 포인트</span>
-                <span className="point-value">604p</span>
+                <span className="point-value"> {point} p </span>
             </div>
 
             <div className="mypage-bar">
                 <div className="icon-bar">
-                    <img src={Delivery}/><br/>
+                    <img src={Delivery} alt="delivery"/><br/>
                     <span>주문·배송</span>
                 </div>
                 <div className="icon-bar">
-                    <img src={Review}/><br/>
+                    <img src={Review} alt="review"/><br/>
                     <span>리뷰</span>
                 </div>
             </div>

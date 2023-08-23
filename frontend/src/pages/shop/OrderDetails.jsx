@@ -1,22 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { SlArrowLeft } from "react-icons/sl";
 import orderProduct from "../../img/orderProduct.png"
+import SimpleTopBar from "../bar/SimpleTopBar";
 
 const OrderDetails = () => {
-    const navigate = useNavigate();
-    const handleGoBack = () => {
-    navigate(-1);
-    };
     return(
         <div>
-            <Navbar fixed="top" bg="white">
-                <Container>
-                    <Navbar.Brand > <SlArrowLeft onClick={handleGoBack}/></Navbar.Brand>
-                    <Navbar.Brand className="order-header">주문상세</Navbar.Brand>
-                </Container>
-            </Navbar>
+            <SimpleTopBar text="주문 상세"/>
 
             <div style={{height:"90px"}}/>
             <div className="order-info">
@@ -25,11 +13,11 @@ const OrderDetails = () => {
                 <span>(23.05.29)</span>
             </div>
 
-            <div class="Line-30"/>
+            <div className="Line-30"/>
 
             <div className="order-info">
                 <div className="order-product">
-                    <img src={orderProduct} className="order-product-img"/>
+                    <img src={orderProduct} className="order-product-img" alt="orderProduct"/>
                     <div className="product-cont">
                         <span className="product-title">동결건조 딸기</span>
                         <span className="product-detail">수량 1개</span>
@@ -39,9 +27,9 @@ const OrderDetails = () => {
                 </div>
             </div>
 
-            <div class="rectangle-btn">
+            <div className="rectangle-btn">
                 <span>배송현황</span>
-                <div class="line-div"/>
+                <div className="line-div"/>
                 <span>문의하기</span>
             </div>
 
@@ -82,7 +70,8 @@ const OrderDetails = () => {
                 <span>총 결제 금액</span>
                 <span className="payment">14,000 원</span>
             </div>
-            <div className="gap20"/>
+
+            <div style={{height: "40px"}}/>
         </div>
     );
 }

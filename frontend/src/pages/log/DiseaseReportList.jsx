@@ -9,7 +9,7 @@ import Desc from "../../img/desc.svg"
 const DiseaseReportList = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const defaultValue = location.state?.defaultValue || "";
+    const defaultValue = location.state?.defaultValue || "1";
     const [value, setValue] = useState(defaultValue);
 
     const ReportData = [

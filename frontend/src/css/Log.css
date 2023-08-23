@@ -3,7 +3,7 @@
 }
 
 .log-body{
-    margin: 0 20px;
+    padding: 0 20px;
     text-align: left;
 }
 
@@ -17,10 +17,12 @@
 .log-profile img{
     width: 50px;
     height: 50px;
+    border-radius: 99px;
 }
 
 .log-profile span{
     margin-left: 12px;
+    padding-right: 12px;
     color: #2D2D2D;
     font-size: 18px;
     font-style: normal;
@@ -28,6 +30,12 @@
     line-height: normal;
 }
 
+.edit-dog{
+    position: absolute;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+}
 
 .log-title-form{
     margin: 40px 0 34px;

@@ -8,7 +8,6 @@ import { FiSearch } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom'
 import '../../css/NavBar.css'
 import cart from '../../img/cart.svg'
-import myPage from '../../img/myPage.svg'
 
 
 const NavBar = () => {
@@ -20,8 +19,7 @@ const NavBar = () => {
                     <Container fluid>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
                         <Navbar.Brand className='topIcon'>
-                            <img src={cart} className='cart' onClick={()=>navigate("/cart")}/>
-                            <img src={myPage} className='user'/>
+                            <img src={cart} className='cart' onClick={()=>navigate("/cart")} alt=""/>
                         </Navbar.Brand>
                         
                         <Navbar.Offcanvas
