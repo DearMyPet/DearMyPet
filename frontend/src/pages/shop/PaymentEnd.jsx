@@ -1,26 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { SlArrowLeft } from "react-icons/sl";
 import dogImg from "../../img/dogImg.png"
 import orderProduct from "../../img/orderProduct.png"
+import SimpleTopBar from "../bar/SimpleTopBar";
 
 const PaymetEnd = () => {
     const navigate = useNavigate();
-    const handleGoBack = () => {
-    navigate(-1);
-    };
 
     return(
         <div>
-            <Navbar fixed="top" bg="white">
-                <Container>
-                    <Navbar.Brand > <SlArrowLeft onClick={handleGoBack}/></Navbar.Brand>
-                    <Navbar.Brand className="order-header">결제완료</Navbar.Brand>
-                </Container>
-            </Navbar>
+            <SimpleTopBar text="결제 완료"/>
 
-            <img src={dogImg} className="img-dog"/>
+            <img src={dogImg} className="img-dog" alt=""/>
             <span className="fin-order">주문 완료!</span><br/>
             <span>
                 빠르게 준비해서 보내드릴게요!<br/>
@@ -33,11 +23,10 @@ const PaymetEnd = () => {
             
             <div className ="Line-30"/>
             <span className="no-product">No.20230529123456 (23.05.29)</span>
-            <div className ="Line-30"/>
 
             <div className="order-info">
                 <div className="order-product">
-                    <img src={orderProduct} className="order-product-img"/>
+                    <img src={orderProduct} className="order-product-img" alt="orderProduct"/>
                     <div className="product-cont">
                         <span className="product-title">동결건조 딸기</span>
                         <span className="product-detail">수량 1개</span>

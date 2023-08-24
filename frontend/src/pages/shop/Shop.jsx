@@ -16,10 +16,6 @@ const Shop = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("전체");
 
-  const handleSlideChange = (nextSlide) => {
-    setCurrentSlide(nextSlide);
-  };
-
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
@@ -53,13 +49,13 @@ const Shop = () => {
       <div className='shop-page'>
         <Carousel>
           <Carousel.Item interval={3000}>
-            <img src={ShopSlide} style={{"width":"100%"}}/>
+            <img src={ShopSlide} style={{"width":"100%"}} alt="slide1"/>
           </Carousel.Item>
           <Carousel.Item interval={3000}>
-            <img src={ShopSlide} style={{"width":"100%"}}/>
+            <img src={ShopSlide} style={{"width":"100%"}} alt="slide2"/>
           </Carousel.Item>
           <Carousel.Item>
-          <img src={ShopSlide} style={{"width":"100%"}}/>
+          <img src={ShopSlide} style={{"width":"100%"}} alt="slide3"/>
           </Carousel.Item>
         </Carousel>
 
@@ -75,7 +71,6 @@ const Shop = () => {
             naturalSlideHeight={130}
             totalSlides={2}
             currentSlide={currentSlide}
-            onSlideChange={handleSlideChange}
         >
           <Slider>
               <Slide index={0}>
@@ -92,8 +87,8 @@ const Shop = () => {
         <span className='shop-catagory'> MD Pick! </span>
 
         <div className='nav-md-pick'>
-          <ul class="nav nav-underline" defaultChecked="">
-            <li class="nav-item">
+          <ul className="nav nav-underline" defaultChecked="">
+            <li className="nav-item">
               <a
                 className={`nav-link ${activeTab === "전체" ? 'active' : ''}`}
                 onClick={() => handleTabClick("전체")}
@@ -101,7 +96,7 @@ const Shop = () => {
                 전체  
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
                 className={`nav-link ${activeTab === "눈 건강" ? 'active' : ''}`}
                 onClick={() => handleTabClick("눈 건강")}
@@ -109,7 +104,7 @@ const Shop = () => {
                 눈 건강  
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
                 className={`nav-link ${activeTab === "피부 건강" ? 'active' : ''}`}
                 onClick={() => handleTabClick("피부 건강")}
@@ -122,7 +117,7 @@ const Shop = () => {
 
         <div className="md-pick-img">
           {filteredImages.map((imageSrc, index) => (
-            <img key={index} src={MdPick} />
+            <img key={index} src={MdPick} alt=""/>
           ))}
         </div>
 

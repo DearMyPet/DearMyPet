@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -12,7 +13,7 @@ import menu4 from '../../img/menu4.svg';
 
 const NavBottomBar = () => {
   const navigate = useNavigate();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState();
 
   const handleNavigation = (path, index) => {
     setValue(index);

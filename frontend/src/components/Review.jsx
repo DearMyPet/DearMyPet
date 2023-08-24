@@ -1,19 +1,10 @@
 import { useState } from "react";
 import menu4 from '../img/menu4.svg';
 import ReviewData from "../data/ReviewData";
-import { AiOutlineLike } from "react-icons/ai";
 
 const Review = () => {
   const [selectedRating, setSelectedRating] = useState(5);
   const [reviews, setReviews] = useState(ReviewData);
-
-  const handleLike = (reviewId) => {
-    setReviews((prevReviews) =>
-      prevReviews.map((review) =>
-        review.id === reviewId ? { ...review, likes: review.likes + 1 } : review
-      )
-    );
-  };
 
   return (
       <div>
@@ -74,13 +65,7 @@ const Review = () => {
               </div>
 
               <div style={{textAlign:"left"}}>
-                <span className="content">{review.content}</span>
-              </div>
-              
-              <div className="review-like">
-                <span className="like-text">도움이 됐어요!</span>
-                <AiOutlineLike  className="like-icon" onClick={() => handleLike(review.id)} />
-                <span>{review.likes}</span>
+                <span className="review-content">{review.content}</span>
               </div>
 
             </div>

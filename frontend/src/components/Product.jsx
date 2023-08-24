@@ -8,7 +8,7 @@ const Product = () => {
         <div>
             <div className="list-Form" onClick={()=>{navigate("/detail/1")}}>
                 {ProductData.map((item, index) => (
-                    <div key={item.id} className={index % 2 === 0 ? 'column1' : 'column2'}>
+                    <div key={item.id} className={index % 2 === 1 ? 'column1' : 'column2'}>
                         <img src={item.img} alt="Product" className="list-img" />
                         <span className="list-form-name">{item.name}</span> <br/>
                         <span className="list-form-price">{item.price.toLocaleString()}원</span><br/>

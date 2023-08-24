@@ -8,14 +8,10 @@
 
 .cart{
   position: absolute;
-  left: 310px;
-  top: 20px;
-}
-
-.user{
-  position: absolute;
-  left: 350px;
-  top: 20px;
+  right: 20px;
+  top: 18px;
+  width: 22px;
+  height: 22px;
 }
 
 .searchContainer {

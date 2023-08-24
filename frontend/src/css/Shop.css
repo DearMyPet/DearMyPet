@@ -56,7 +56,7 @@
 
 .horizontal-line {
   width: 390px;
-  height: 7px;
+  height: 4px;
   margin: 15px 0;
   background-color: #e6e6e6;
 }
@@ -265,10 +265,9 @@
 }
 
 .rectangle-list {
-  width: 70px;
-  height: 24px;
-  margin-left: 220px;
-  padding: 4px 7px;
+  position: absolute;
+  right: 20px;
+  padding: 2px 8px;
   border-radius: 20px;
   background-color: #eee;
 }
@@ -276,7 +275,7 @@
 .rectangle-memo{
   width: 350px;
   height: 30px;
-  margin: 20px 0;
+  margin: 4px 0;
   border-radius: 6px;
   border: solid 1px #dedede;
   background-color: #fff;
@@ -289,11 +288,6 @@
   font-size: 18px;
   line-height: 26px;
   color: #000000;
-}
-
-.select-option{
-  width: 300px;
-  height: auto;
 }
 
 .order-product{
@@ -339,31 +333,8 @@
   color: #000000;
 }
 
-.coupon{
-  display: inline;
-}
-
-.coupon-select{
-  margin-left: 50px;
-  width: 200px;
-  height: 30px;
-  border-radius: 6px;
-  border: solid 0.6px #dedede;
-  background-color: #fff;
-  text-align: left;
-  color: #7b7b7b;
-}
-
-.coupon-price{
-  margin-left: 40px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 23px;
-  color: #000000;
-}
-
 .point-input{
+  text-align: right;
   margin-left: 40px;
   margin-right: 10px;
   width: 174px;
@@ -783,24 +754,12 @@
   margin-left: auto;
 }
 
-.content {
+.review-content {
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: #000000;
-}
-
-.review-like{
-  margin-top: 15px;
-  text-align: right;
-  font-weight: 400;
-  font-size: 12px;
-}
-
-.like-icon{
-  height: 12px;
-  margin: 0 2px 0 16px;
 }
 
 .inquiry{
