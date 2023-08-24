@@ -1,0 +1,53 @@
+.prevent-check{
+  margin-top: 38px;
+  margin-left: 20px;
+  text-align: left;
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.record-writing{
+  margin-left: 20px;
+  text-align: left;
+  color: #000;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  line-height: normal;
+  margin-top: 55px;
+  margin-bottom: 53px;
+}
+
+.record-writing-title{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.record-writing-content{
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 22px;
+  width: 350px;
+}
+
+.go-record-button{
+  margin-top: 28px;
+  width: 350px;
+  height: 44px;
+  border-radius: 12px;
+  background: #EAEAEA;
+  padding-left: 14px;
+  padding-top: 11px;
+  }
+
+.go-record-more{
+  width: 8px;
+  height: 13px;
+  margin-top: 5px;
+  float: right;
+  margin-right: 20px;
+}
