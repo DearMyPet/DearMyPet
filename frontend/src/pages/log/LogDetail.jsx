@@ -2,6 +2,10 @@ import SimpleTopBar from "../bar/SimpleTopBar";
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import DiseaseLog from "../../components/DiseaseLog";
+import TodoList from "../../components/TodoList";
+import PreventLog from "./PreventLog";
+
+
 
 const LogDetail = () => {
     const location = useLocation();
@@ -16,7 +20,7 @@ const LogDetail = () => {
 
     const obj = {
         "질병" : <DiseaseLog/>,
-        "예방" : <div/>,
+        "예방" : <PreventLog/>,
         "맞춤" : <div/>
     }
 
@@ -51,7 +55,11 @@ const LogDetail = () => {
                 <button className='buy-button' onClick={()=>{ navigate("/products/list")}}> 추천 상품 보러가기</button>
             </div>
         </div>
+
     )
 }
+
+
+
 
 export default LogDetail; 

@@ -21,6 +21,8 @@ import Check from './pages/main/Check';
 import Checking from './pages/main/Checking';
 import Report from './pages/main/Report';
 import ProductRecommendation from "./pages/log/ProductRecommendation";
+import TodoList from "./components/TodoList";
+
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
           <Route path="/orders" element={ <OrderDetails/> } />
           <Route path="/lists" element={<List/>} />
           <Route path="/mypage" element={<MyPage/>} />
+          <Route path="/TodoList" element={<todoList/>} />
         </Routes>
       </main>
     </div>
