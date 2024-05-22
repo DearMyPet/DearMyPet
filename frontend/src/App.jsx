@@ -20,9 +20,13 @@ import FinElogin from './pages/login/FinElogin';
 import Check from './pages/main/Check';
 import Checking from './pages/main/Checking';
 import Report from './pages/main/Report';
+import Inquiry from "./pages/shop/Inquiry"
 import ProductRecommendation from "./pages/log/ProductRecommendation";
 import TodoList from "./components/TodoList";
 
+
+import ProductRegistration from "./pages/shop/productRegistration";
+import ProductInfoRegistration from "./pages/shop/ProductInfoRegistration";
 
 function App() {
   return (
@@ -45,12 +49,15 @@ function App() {
           <Route path="/report" element={<Report/>} />
           <Route path="/shop" element={ <Shop/> } />
           <Route path="/detail/:id" element={ <Detail/> } />
+          <Route path="/inquiry/:id" element={ <Inquiry/> } />
           <Route path="/order" element={ <Order/> } />
           <Route path="/payment" element={ <PaymentEnd/> } />
           <Route path="/cart" element={ <Cart/> } />
           <Route path="/orders" element={ <OrderDetails/> } />
           <Route path="/lists" element={<List/>} />
           <Route path="/mypage" element={<MyPage/>} />
+          <Route path="/products/registration" element={<ProductRegistration/>} />
+          <Route path="/products/info/registration" element={<ProductInfoRegistration/>} />
           <Route path="/TodoList" element={<todoList/>} />
         </Routes>
       </main>

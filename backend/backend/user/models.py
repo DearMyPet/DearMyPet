@@ -66,7 +66,7 @@ def create_for_new_user(sender, instance, created, **kwargs):
 
 class Cart(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'Cart'
@@ -89,3 +89,6 @@ class Point(models.Model):
 
     class Meta:
         db_table = 'Point'
+
+
+

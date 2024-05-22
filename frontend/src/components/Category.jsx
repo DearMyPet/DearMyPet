@@ -13,7 +13,7 @@ const Catagory = () => {
 
   return(
     <div className='category-list'>
-      <div onClick={()=>handleCategoryClick("전체 보기")}>
+      <div onClick={()=>handleCategoryClick("전체보기")}>
         <img src={All} alt="All"/> 
         <span>전체 보기</span>
       </div>
