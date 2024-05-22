@@ -8,7 +8,7 @@ import axios from 'axios';
 import { BiPlusCircle } from "react-icons/bi";
 import DogModal from '../../components/DogModal';
 
-function Main(){
+const Main = () => {
     const navigate = useNavigate();
     const [name, setName] = useState();
     const [img, setImg] = useState();
@@ -23,14 +23,14 @@ function Main(){
         setModalIsOpen(false);
     };
 
-    const handleCheckLink = (path) => () => {
+    const handleCheckLink = (path, type) => () => {
         const dogId = sessionStorage.getItem("dog");
         if (!dogId) {
             alert("강아지를 등록하고 진행해주세요!");
             openModal();
             return false;
         }
-        navigate(path);
+        navigate(path, { state: { part: type } });
     }
 
     const fetchData = () => {
@@ -72,11 +72,11 @@ function Main(){
             </div>
 
             <div className='main-content'> 
-                <div className='eye-examination' onClick={handleCheckLink("/check")}>
+                <div className='eye-examination' onClick={handleCheckLink("/check", "눈")}>
                     <span className='box-title'>눈 건강<br/></span>
                     <span className='box-exp'>이상 징후 체크</span>
                 </div>
-                <div className='skin-examination' onClick={handleCheckLink("/check")}>
+                <div className='skin-examination' onClick={handleCheckLink("/check", "피부")}>
                     <span className='box-title'>피부 건강<br/></span>
                     <span className='box-exp'>이상 징후 체크</span>
                 </div>
@@ -87,9 +87,9 @@ function Main(){
             <div>
                 <span className='guide-title'>🔎 진단 가이드 확인하기</span>
                 <div className='guide-box'>
-                    <div className='eye-guide' onClick={()=>navigate("/")}>눈 진단 가이드 👀</div>
+                    <div className='eye-guide' onClick={()=>navigate("/main")}>눈 진단 가이드 👀</div>
                     <div id='line'/>
-                    <div className='skin-guide' onClick={()=>navigate("/")}>피부 진단 가이드 🐾</div>
+                    <div className='skin-guide' onClick={()=>navigate("/main")}>피부 진단 가이드 🐾</div>
                 </div>
             </div>
             <NavBottomBar/>

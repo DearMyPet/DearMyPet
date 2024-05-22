@@ -4,6 +4,7 @@
     text-align: center;
     position: relative;
     background: #F9F9F9;
+    padding: 0 20px;
 }
 
 .user-title{
@@ -163,11 +164,9 @@
     height: 187px;
     left: calc(50% - 350px/2);
     top: 248px;
-
     background: #FFFFFF;
     border: 1.4px dashed #C8C8D1;
     border-radius: 10px;
-
 }
 
 

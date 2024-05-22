@@ -1,22 +1,51 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import orderProduct from "../../img/orderProduct.png"
 import kakaopay from "../../img/kakaopay.png"
 import tosspay from "../../img/tosspay.png"
 import SimpleTopBar from "../bar/SimpleTopBar";
-
+import axios from "axios";
 
 const Order = () => {
+    const location = useLocation();
+    const cartItems = location.state.cartItems;
+    const totalPrice = location.state.totalPrice;
+    const shippingCost = location.state.shippingCost;
+    const totalCost = location.state.totalCost;
+
     const [selectedPayOption, setSelectedPayOption] = useState("");
+    const [lastAddressInfo, setLastAddressInfo] = useState();
+    const [point, setPoint] = useState(0);
     const navigate = useNavigate();
     const handlePayOptionChange = (event) => {
         setSelectedPayOption(event.target.value);
     };
+    
+    useEffect( () => {
+        const userId = sessionStorage.getItem("user");
+        const address = () => {
+            axios.get(`http://127.0.0.1:8000/api/orders/last/${userId}`)
+            .then(response => {
+                console.log(response.data)
+                if(response.data.state === 200){
+                    setLastAddressInfo(response.data)
+                }
+            })
+        }
+        const point = () => {
+            axios.get(`http://127.0.0.1:8000/api/users/points/${userId}`)
+            .then(response => {
+                setPoint(response.data.point);
+            })
+        }
+        address();
+        point();
+    }, []);
 
+    // 배송메모 -> 직접입력
     const [showInput, setShowInput] = useState(false);
-
     const handleChange = (event) => {
         if (event.target.value === "7") {
             setShowInput(true);
@@ -32,15 +61,21 @@ const Order = () => {
             <div>
                 <div style={{height:"90px"}}/>
                 <div className="order-info">
-                    <span style={{fontWeight: "bold", fontSize: "18px"}}>기숙사</span>
-                    <span class="rectangle-list">배송정보 수정</span>
+                    {/* <span style={{fontWeight: "bold", fontSize: "18px"}}>{lastAddressInfo? lastAddressInfo.name : "배송지 명"}</span>
+                    <span className="rectangle-list">배송정보 수정</span>
                     <div className="gap20"/>
-                    <span>김철수</span>
-                    <span style={{marginLeft:"30px"}}>010-1234-5678</span>
+                    <span>{lastAddressInfo? lastAddressInfo.recipient : "수령인을 입력하세요."}</span>
+                    <span style={{marginLeft:"30px"}}>{lastAddressInfo? lastAddressInfo.recipient_phone : "전화번호를 입력하세요."}</span>
                     <div className="gap20"/>
-                    <span className="text-address">경기 시흥시 산기대학로 237 (정왕동, 한국산업기술대학교), <br/>
-                        제2기숙사 100호 [15073]
-                    </span>
+                    <span className="text-address">{lastAddressInfo? lastAddressInfo.address : "상세주소를 입력하세요."}</span> */}
+                    
+                    <input type="text" style={{fontWeight: "bold", fontSize: "18px"}} placeholder="배송지 명을 입력하세요." />
+                    <div className="gap20"/>
+                    <input type="text" placeholder="수령인을 입력하세요." />
+                    <input type="text" style={{marginLeft:"30px"}} placeholder="전화번호를 입력하세요." />
+                    <div className="gap20"/>
+                    <input type="text" className="text-address" placeholder="상세주소를 입력하세요." />
+
                     <br/><br/>
 
                     <select name="배송메모" className="rectangle-memo" onChange={handleChange}>
@@ -64,7 +99,6 @@ const Order = () => {
                         <div className="product-cont">
                             <span className="product-title">동결건조 딸기</span>
                             <span className="product-detail">수량 1개</span>
-                            {/* <span className="product-detail">배송비 2,500원</span> */}
                             <span className="order-price">7,500 원</span>
                         </div>
                     </div>
@@ -76,13 +110,13 @@ const Order = () => {
                     <div className="gap20"/>
                     <div className="inline-section">
                         <span>포인트</span>
-                        <input className="point-input" type="text"></input> 
+                        <input className="point-input" type="number"></input> 
                         <span className="point-price">P</span>
-                        <span class="rectangle-all">전액사용</span>
+                        <span className="rectangle-all">전액사용</span>
                     </div>
                     <div className="gap20"/>
                     <div className="point-use">
-                        <span className="my-point">보유 포인트 : 0P </span>
+                        <span className="my-point">보유 포인트 : {point}P </span>
                     </div>
                 </div>
                 <div className="Line-30"/>
@@ -90,16 +124,16 @@ const Order = () => {
                     <span className="order-product-title" >결제 금액</span>
                     <div className="gap20"/>
                     <span>총 상품 금액</span>
-                    <span className="pay-price">7,500 원</span>
+                    <span className="pay-price">{totalPrice.toLocaleString()} 원</span>
                     <div className="gap20"/>
                     <span>총 배송비</span>
-                    <span className="pay-price">2,500 원</span>
+                    <span className="pay-price">{shippingCost.toLocaleString()} 원</span>
                     <div className="gap20"/>
                     <span>포인트 사용</span>
                     <span className="pay-price">(-)  0 원</span>
                     <div className="line2"/>
                     <span>총 결제 금액</span>
-                    <span className="payment">14,000 원</span>
+                    <span className="payment">{totalCost.toLocaleString()} 원</span>
                 </div>
                 <div className="Line-30"/>
                 <div className="order-info">

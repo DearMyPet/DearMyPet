@@ -2,7 +2,7 @@ from datetime import date
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import User
+from .models import User, CartItem
 
 
 class JWTJoinSerializer(serializers.ModelSerializer):
@@ -55,4 +55,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
-        # fields = ['id', 'email', 'password', 'phone', 'name', 'nickname', 'created_at', 'updated_at', 'is_deleted']
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = '__all__'

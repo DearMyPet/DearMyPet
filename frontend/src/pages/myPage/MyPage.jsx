@@ -6,23 +6,26 @@ import Review from "../../img/review.svg"
 import Delivery from "../../img/delivery.svg"
 import { BsInstagram } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PiUserCircle } from "react-icons/pi";
 
 const MyPage = () => {
+    const navigate = useNavigate();
+
     const [nickname, setNickname] = useState(""); 
     const [point, setPoint] = useState(0);
 
     useEffect( () => {
         const userId = sessionStorage.getItem("user");
         const user = () => {
-            axios.get(`http://127.0.0.1:8000/api/users/info/${userId}`)
+            axios.get(`http://127.0.0.1:8000/api/users/${userId}`)
             .then(response => {
                 setNickname(response.data.nickname);
             })
         }
         const point = () => {
-            axios.get(`http://127.0.0.1:8000/api/users/${userId}`)
+            axios.get(`http://127.0.0.1:8000/api/users/points/${userId}`)
             .then(response => {
                 setPoint(response.data.point);
             })
@@ -31,6 +34,17 @@ const MyPage = () => {
         point()
     }, []);
 
+    const handleLogout = () => {
+        axios.delete("http://127.0.0.1:8000/api/users/logout")
+        .then(response => {
+            alert("로그아웃 성공!")
+            setTimeout(() => {
+                sessionStorage.clear();
+                navigate("/");
+              }, 1000);
+        })
+    }
+
     return(
         <div>
             <SimpleTopBar text="더보기"/>
@@ -38,7 +52,6 @@ const MyPage = () => {
 
             <div className="mypage-profile">
                 <PiUserCircle className="user-profile"/>
-                {/* <img src={Circle} alt="user"/> */}
                 <span>{nickname}</span>
                 <SlArrowRight className="mypage-arrow"/>
             </div>
@@ -70,10 +83,10 @@ const MyPage = () => {
                     <span>내 정보 수정</span>
                     <SlArrowRight className="mypage-arrow"/>
                 </div>
-                <div className="mypage-list-box">
+                {/* <div className="mypage-list-box">
                     <span>반려동물 정보 수정</span>
                     <SlArrowRight className="mypage-arrow"/>
-                </div>
+                </div> */}
             </div>
 
             <div className="horizontal-line"/>
@@ -102,10 +115,14 @@ const MyPage = () => {
                     <span>이벤트</span>
                     <SlArrowRight  className="mypage-arrow"/>
                 </div>
-                <div className="mypage-list-box">
-                    <span><BsInstagram/>  인스타그램</span>
+                <div className="mypage-list-box" onClick={handleLogout}>
+                    <span>로그아웃</span>
                     <SlArrowRight  className="mypage-arrow"/>
                 </div>
+                {/* <div className="mypage-list-box">
+                    <span><BsInstagram/>  인스타그램</span>
+                    <SlArrowRight  className="mypage-arrow"/>
+                </div> */}
             </div>
             
             <NavBottomBar/>

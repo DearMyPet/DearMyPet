@@ -10,7 +10,7 @@ import checkImg3 from '../../img/checkImg3.svg';
 import SimpleTopBar from '../bar/SimpleTopBar'
 import { useNavigate } from 'react-router-dom';
 
-function Report(){
+const Report = () => {
     const naqvigate = useNavigate();
 
     let today = new Date();   

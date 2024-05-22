@@ -6,7 +6,7 @@ const InfoBar = () => {
     return(
         <div>
             <div className="info-bar">
-                <div style={{height:"80px"}}/>
+                <div style={{height:"60px"}}/>
                 <span className="infoBar-title">DEARMYPET</span><br/>
                 <span className="infoBar-sub-title">디어마이펫 포 유</span>
                 <div className="gap20"/>

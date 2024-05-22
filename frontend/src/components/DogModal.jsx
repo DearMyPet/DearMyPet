@@ -2,6 +2,7 @@ import Modal from 'react-modal';
 import '../css/DogModal.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { IoClose } from "react-icons/io5";
 
 const customStyles = {
     content: {
@@ -26,7 +27,8 @@ const DogModal = ({ isOpen, onRequestClose, onActionComplete, currentImg }) => {
         breed: "",
     });
     
-    const [file, setFile] = useState(null);
+    const [fileURL, setFileURL] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const userId = sessionStorage.getItem("user");
     const dogId = sessionStorage.getItem("dog");
@@ -46,13 +48,13 @@ const DogModal = ({ isOpen, onRequestClose, onActionComplete, currentImg }) => {
 
     useEffect(() => {
         if (dogInfo && dogInfo.img) {
-            setFile(dogInfo.img);
+            setFileURL(dogInfo.img);
         }
     }, [dogInfo]);
 
     useEffect(() => {
         if (currentImg) {
-            setFile(currentImg);
+            setFileURL(currentImg);
         }
     }, [currentImg]);
 
@@ -64,13 +66,21 @@ const DogModal = ({ isOpen, onRequestClose, onActionComplete, currentImg }) => {
     };
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        // setFile(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+            const imageURL = URL.createObjectURL(file);
+            setFileURL(imageURL);
+            setSelectedFile(file);  // 파일 객체 저장
+        }
     };    
 
     const handleSave = () => {
         const formData = new FormData();
         formData.append('id', dogId);
-        formData.append('img', file);
+        if (selectedFile) {
+            formData.append('img', selectedFile);
+        }
         formData.append('name', dogInfo.name);
         formData.append('weight', dogInfo.weight);
         formData.append('age', dogInfo.age);
@@ -126,7 +136,16 @@ const DogModal = ({ isOpen, onRequestClose, onActionComplete, currentImg }) => {
             contentLabel="Modal"
             style={customStyles}
         >
+            <IoClose className='close-button' onClick={()=>onRequestClose()}/>
+
             <h2>반려견 정보</h2>
+            
+
+            <div className='modal-box'>
+                <div className='modal-img-box'><img src={fileURL}/></div>
+                <span>사진 : </span>
+                <input type="file" onChange={handleFileChange}/>
+            </div>
 
             <div className='modal-box'>
                 <span>이름 : </span>
@@ -167,11 +186,6 @@ const DogModal = ({ isOpen, onRequestClose, onActionComplete, currentImg }) => {
                     value={dogInfo ? dogInfo.breed : ""}
                     onChange={e => handleChange(e, 'breed')}
                 />
-            </div>
-
-            <div className='modal-box'>
-                <span>사진 : </span>
-                <input type="file" onChange={handleFileChange}/>
             </div>
 
             <div style={{display: "inline"}}>

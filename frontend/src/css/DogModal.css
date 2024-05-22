@@ -2,9 +2,28 @@
     font-family: 'Noto Sans KR';
 }
 
+.close-button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .modal-box{
     text-align: left;
     padding: 10px;
+}
+
+.modal-img-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 16px;
+}
+
+.modal-box img{
+    width: 100px;
+    height: 100px;
+    border-radius: 99px;
 }
 
 .modal-box span{

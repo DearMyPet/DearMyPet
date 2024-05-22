@@ -75,7 +75,6 @@ class DogAPIview(APIView):
             return Response({"message": "강아지를 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, id):
-        # dog_id = request.data.get('id')
         dog_id = request.query_params.get('id')
         try:
             dog = Dog.objects.get(id=dog_id)
@@ -84,7 +83,6 @@ class DogAPIview(APIView):
 
         except Dog.DoesNotExist:
             return Response({"message": "해당 반려견을 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
-
 
 
 # 예방 일지 - 체크 리스트

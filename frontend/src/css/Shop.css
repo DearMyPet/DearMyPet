@@ -195,7 +195,7 @@
   text-align: center;
   margin-top: 10px;
   color: white;
-  background: black;
+  background: #444ED3;
   border: none;
   border-radius: 20px;
   font-size: 20px;
@@ -264,6 +264,13 @@
   margin-left: 20px;
 }
 
+.order-info input {
+  border-radius: 6px;
+  border: solid 1px #dedede;
+  background-color: #fff;
+  /* color: #7b7b7b; */
+}
+
 .rectangle-list {
   position: absolute;
   right: 20px;
@@ -276,9 +283,6 @@
   width: 350px;
   height: 30px;
   margin: 4px 0;
-  border-radius: 6px;
-  border: solid 1px #dedede;
-  background-color: #fff;
   color: #7b7b7b;
 }
 
@@ -339,9 +343,7 @@
   margin-right: 10px;
   width: 174px;
   height: 30px;
-  border-radius: 6px;
-  border: solid 0.6px #dedede;
-  background-color: #fff;
+  color: #000000;
 }
 
 .point-price{
@@ -391,7 +393,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  color: #2EC7A6;
+  color: #368DF6;
 }
 
 .line2{
@@ -406,7 +408,7 @@
   font-weight: 638;
   font-size: 12px;
   line-height: 17px;
-  color: #2EC7A6;
+  color: #368DF6;
 }
 
 .cart-page{
@@ -420,9 +422,9 @@
   margin-right: 20px;
   padding: 4px 10px;
   text-align: right;
-  color: white;
+  color: #000000;
   border-radius: 16px;
-  background-color: #2ec7a6;
+  background-color: #EFF0F4;
 }
 
 .icon-go-next{
@@ -484,6 +486,9 @@
 }
 
 .cart-itmes-img{
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
   vertical-align: text-top;
 }
 
@@ -705,14 +710,11 @@
 }
 
 .bar-graph-fill {
+  position: relative;
   width: 10px;
   height: 80px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   background-color: #dbdbdb;
-}
-
-.bar-graph-fill.filled {
-  background-color: #e94c35;
 }
 
 .rating-points {
@@ -720,7 +722,8 @@
 }
 
 .review-item {
-  margin: 34px 0;
+  margin: 16px 0;
+  padding: 0 16px;
 }
 
 .profile {
@@ -745,6 +748,12 @@
   font-weight: bold;
 }
 
+.review-time {
+  position: absolute;
+  right: 40px;
+  font-size: 14px;
+}
+
 .rating {
   display: flex;
   margin-left: auto;
@@ -767,8 +776,8 @@
 }
 
 .btn-inquiry{
-  margin: 30px 20px 30px 0;
-  width: 350px;
+  margin: 30px 0;
+  width: 342px;
   height: 50px;
   font-size: 18px;
   font-weight: 500;
@@ -787,12 +796,15 @@
 }
 
 .post-item.expanded {
-  padding: 10px;
+  margin-top: -10.5px;
+  padding-top: 10px;
   background-color: #f5f5f5;
 }
 
 .post-header {
+  padding: 0 18px;
   display: flex;
+  align-items: center;
   text-align: left;
 }
 
@@ -804,7 +816,7 @@
 }
 
 .status{
-  width: 70px;
+  width: 62px;
   margin-right: 10px;
   font-weight: 500;
   font-size: 16px;
@@ -824,14 +836,10 @@
   color: #515151;
 }
 
-.post-nickname{
-  position: absolute;
-  right: 50px;
-}
-
 .post-toggle{
+  padding: 10px;
   text-align: left;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .list-Form{

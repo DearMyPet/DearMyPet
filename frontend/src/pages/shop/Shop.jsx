@@ -9,12 +9,15 @@ import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import popularList from "../../img/popularList.png"
 import MdPick from "../../img/md-pick1.svg"
+import axios from 'axios';
 
 const imgArr = ['1','2','3','4','5','6','7'].slice(0,6); // 임시 데이터
 
 const Shop = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("전체");
+
+  const [products, setProducts] = useState();
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -30,6 +33,13 @@ const Shop = () => {
       clearInterval(interval);
     };
   }, [currentSlide]);
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/products")
+    .then(response => {
+      setProducts(response.data);
+    })
+  }, []);
 
   const getFilteredImages = () => {
     if (activeTab === '전체') {

@@ -23,7 +23,7 @@ def get_last_address(request, user_id):
 
         return Response(address_info, status=status.HTTP_200_OK)
     except Order.DoesNotExist:
-        return Response({"message": "주문 내역이 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"message": "주문 내역이 없습니다."})
 
 
 class OrderAPIView(APIView):

@@ -2,15 +2,10 @@ from django.db import models
 from user.models import User
 from disease_diary.models import Nutrients, HealthAnomalies
 
-TYPE_CHOICES = [
-    ('사료', '사료'),
-    ('간식', '간식'),
-]
-
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    type = models.CharField(max_length=10, choices=TYPE_CHOICES, null=False)
+    type = models.CharField(max_length=10, null=False)
     part = models.CharField(max_length=10, null=False)
     name = models.CharField(max_length=100, null=False)
     price = models.DecimalField(max_digits=8, decimal_places=0, null=False)
