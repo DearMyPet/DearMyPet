@@ -22,6 +22,8 @@ import Checking from './pages/main/Checking';
 import Report from './pages/main/Report';
 import Inquiry from "./pages/shop/Inquiry"
 import ProductRecommendation from "./pages/log/ProductRecommendation";
+import TodoList from "./components/TodoList";
+
 
 import ProductRegistration from "./pages/shop/productRegistration";
 import ProductInfoRegistration from "./pages/shop/ProductInfoRegistration";
@@ -54,9 +56,9 @@ function App() {
           <Route path="/orders" element={ <OrderDetails/> } />
           <Route path="/lists" element={<List/>} />
           <Route path="/mypage" element={<MyPage/>} />
-
           <Route path="/products/registration" element={<ProductRegistration/>} />
           <Route path="/products/info/registration" element={<ProductInfoRegistration/>} />
+          <Route path="/TodoList" element={<todoList/>} />
         </Routes>
       </main>
     </div>

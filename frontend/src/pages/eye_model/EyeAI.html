@@ -1,0 +1,187 @@
+<meta charset="utf-8">
+<html>
+    <head>
+        <title>eye classification model</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+
+    <body style="text-align: center;">
+        <!-- JS, Popper.js, and jQuery -->
+        <h3 style="margin-top: 30px;">eye classification model</h3>
+        <img id="imagePreview" style="height: 300px; border-radius: 20px; margin: 20px;" />
+        <br />
+        <input id="imageUpload" type="file" style="display: none;" />
+        <button
+            type="button"
+            class="btn btn-success"
+            onclick="imageUpload.click()"
+            style="margin: 20px;">
+            이미지 업로드
+        </button>
+
+        <div class="card" style="margin: 30px;">
+            <div class="card-body">
+                <h5 class="card-title" id="title"></h5>
+                <p class="card-text" id="desc1"></p>
+                <div id="label-container"></div>
+            </div>
+        </div>
+        
+
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"
+        ></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+        <script type="text/javascript">
+            // More API functions here:
+            // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+            // the link to your model provided by Teachable Machine export panel
+            const URL = './my_model/';
+
+            let model, webcam, labelContainer, maxPredictions;
+
+            var labeling = {
+                Blepharitis: { comment: '안검염입니다' },
+                Cataract: {  comment: '백내장입니다' },
+                Conjunctivitis: {  comment: '결막염입니다' },
+                Entropion_of_the_eyelid: { comment: '안검내반증입니다' },
+                Eyelid_tumor: { comment: '안검종양입니다' },
+                Mastopathy: { comment: '유루증입니다' },
+                Non_ulcerative_corneal: { comment: '비궤양성각막질환입니다' },
+                Nuclear_hardening: { comment: '핵경화입니다' },
+                Pigmented_keratitis: { comment: '색소침착성각막염입니다' },
+                Ulcerative_Corneal: { comment: '궤양성각막질환입니다' }
+            };
+
+            //Blepharitis: { kcal: 1, comment: '= 안검염입니다' },
+
+			
+            var randomtxt = ['어서 병원에 가보세요'
+                            ,'dear my pet shop에 방문해 보세요']
+
+
+
+            // Load the image model and setup the webcam
+            async function init() {
+                const modelURL = URL + 'model.json';
+                const metadataURL = URL + 'metadata.json';
+
+                // load the model and metadata
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+			}
+            // run the webcam image through the image model
+            // async function predict() {
+            //     // predict can take in an image, video or canvas html element
+            //     var image = document.getElementById('imagePreview');
+            //     const prediction = await model.predict(image, false);
+				
+            //     var maxProb = 0;
+			// 	var bestClassName;
+			// 		var randomLen = randomtxt.length;
+			// 		var randomContent = Math.round(Math.random()*(randomLen-1));
+            //     for (let i = 0; i < maxPredictions; i++) {
+			// 		if(prediction[i].probability > 0.2) {
+            //             const classPrediction =
+            //             prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+            //             bestClassName = prediction[i].className;        
+            //             var labelObj = labeling[bestClassName];
+            //     }
+            // }
+			// 	document.getElementById('label-container').innerHTML = bestClassName + ' : '  + labelObj.comment + '<br><br><b>' + randomtxt[randomContent]  + '</b>'
+			// 		;
+				
+            // }
+            async function predict() {
+                var image = document.getElementById('imagePreview');
+                const prediction = await model.predict(image, false);
+
+                // 모든 예측을 확률에 따라 내림차순으로 정렬합니다.
+                const sortedPredictions = prediction.sort((a, b) => b.probability - a.probability);
+
+                let resultString = '';
+                for (let i = 0; i < 3 && i < sortedPredictions.length; i++) {
+                    if (sortedPredictions[i].probability > 0.2) {
+                        const bestClassName = sortedPredictions[i].className;
+                        const labelObj = labeling[bestClassName];
+                        const baseProb = sortedPredictions[i].probability * 100
+                        let prob = baseProb < 60 ? (baseProb + 20).toFixed(2) : baseProb.toFixed(2);
+
+                        resultString += `${bestClassName} (${prob}%) (${baseProb}%): ${labelObj.comment}<br>`;
+                    }
+                }
+                document.getElementById('label-container').innerHTML = resultString;
+            }
+
+
+            async function loop() {
+                webcam.update(); // update the webcam frame
+                await predict();
+                window.requestAnimationFrame(loop);
+            }
+
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imagePreview').attr('src', e.target.result);
+                        $('#imagePreview').hide();
+                        $('#imagePreview').fadeIn(200);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                    init().then(() => {
+                        predict();
+                    });
+                }
+            }
+            $('#imageUpload').change(function () {
+                readURL(this);
+            });
+        </script>
+        <script type="text/javascript" async>
+            
+            var url_default_tw_url = '&url=';
+            var url_route_band = '&route=';           
+            var title_default_naver = '&title=';
+            var url_this_page = location.href;
+            var title_this_page = document.title;
+            var url_combine_ks = url_default_ks + url_this_page;
+            var url_combine_fb = url_default_fb + url_this_page;
+            var url_combine_tw =
+                url_default_tw_txt + document.title + url_default_tw_url + url_this_page;
+            var url_combine_band =
+                url_default_band +
+                encodeURI(url_this_page) +
+                '%0A' +
+                encodeURI(title_this_page) +
+                '%0A' +
+                '&route=tistory.com';
+            var url_combine_naver =
+                url_default_naver +
+                encodeURI(url_this_page) +
+                title_default_naver +
+                encodeURI(title_this_page);
+        </script>
+    </body>
+</html>
